@@ -1,0 +1,44 @@
+# .gitignore
+
+## ------------------------------------
+##  Project build rubbish
+## ------------------------------------
+
+/node_modules
+/typings
+/build
+/dist
+/storage
+/.tmp
+/npm-debug.log
+/npm-shrinkwrap.json
+
+
+## ------------------------------------
+##  Normally ignored rubbish
+## ------------------------------------
+
+## IDE files
+/.idea
+/*.sublime-project
+/*.sublime-workspace
+
+## shared hosting files
+.ftpquota
+error_log
+cgi-bin
+
+## temp files
+*~
+*.tmp
+*.swp
+*.swo
+.swp.*
+
+## OS generated files
+__MACOSX
+.DS_Store
+.Spotlight*
+.Trash*
+ehthumbs.db
+Thumbs.db

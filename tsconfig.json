@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "outDir": "build",
+    "lib": [
+      "dom",
+      "es5",
+      "es2015.promise",
+      "es2015.iterable"
+    ],
+    "types": [
+    ]
+  },
+  "exclude": [
+    "node_modules",
+  ]
+}

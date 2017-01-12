@@ -1,0 +1,635 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>api | AimBrain WebSDK</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">AimBrain WebSDK</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<div class="logo"></div>
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="api.html">api</a>
+				</li>
+			</ul>
+			<h1>Module api</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<h2 id="api-module">API module</h2>
+						<p>This module contains SDK credential management and type definitions used in the
+						SDK. Please refer to each type definition for more detailed description.</p>
+						<h3 id="sdk-credentials">SDK credentials</h3>
+						<p>Method <a href="api.html#setkeyandsecret">setKeyAndSecret</a> is used to set API key and secret. This method
+						must be invoked before using SDK methods resulting in API calls.</p>
+						<p>Example usage:</p>
+						<pre><code><span class="hljs-selector-tag">Aimbrain</span><span class="hljs-selector-class">.api</span><span class="hljs-selector-class">.setKeyAndSecret</span>("<span class="hljs-selector-attr">[api key]</span>", "<span class="hljs-selector-attr">[api secret]</span>");
+</code></pre><p>Setting credentials is not required if calls are made with request serialization.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Enumerations</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-enum tsd-parent-kind-module"><a href="../enums/api.enrollmentstatus.html" class="tsd-kind-icon">Enrollment<wbr>Status</a></li>
+								<li class="tsd-kind-enum tsd-parent-kind-module"><a href="../enums/api.errorcode.html" class="tsd-kind-icon">Error<wbr>Code</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="api.html#authenticationerrorresponse" class="tsd-kind-icon">Authentication<wbr>Error<wbr>Response</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="api.html#authenticationresponse" class="tsd-kind-icon">Authentication<wbr>Response</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="api.html#behaviourerrorresponse" class="tsd-kind-icon">Behaviour<wbr>Error<wbr>Response</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="api.html#behaviourresponse" class="tsd-kind-icon">Behaviour<wbr>Response</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="api.html#enrollerrorresponse" class="tsd-kind-icon">Enroll<wbr>Error<wbr>Response</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="api.html#facialenrollmentresponse" class="tsd-kind-icon">Facial<wbr>Enrollment<wbr>Response</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="api.html#sessionerrorresponse" class="tsd-kind-icon">Session<wbr>Error<wbr>Response</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="api.html#sessionresponse" class="tsd-kind-icon">Session<wbr>Response</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="api.html#voiceenrollmentresponse" class="tsd-kind-icon">Voice<wbr>Enrollment<wbr>Response</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="api.html#voicetokenresponse" class="tsd-kind-icon">Voice<wbr>Token<wbr>Response</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="api.html#setbaseurl" class="tsd-kind-icon">set<wbr>Base<wbr>Url</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="api.html#setkeyandsecret" class="tsd-kind-icon">set<wbr>Key<wbr>And<wbr>Secret</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="authenticationerrorresponse" class="tsd-anchor"></a>
+					<h3>Authentication<wbr>Error<wbr>Response</h3>
+					<div class="tsd-signature tsd-kind-icon">Authentication<wbr>Error<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in api/index.ts:208</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Response for failed authentication API call</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>error<wbr>Code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ErrorCode.BadRequest</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ErrorCode.InvalidKeyOrSignature</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ErrorCode.InvalidSessionId</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ErrorCode.AuthorizationFailed</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ErrorCode.NotEnrolledYet</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ErrorCode.ServerError</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="authenticationresponse" class="tsd-anchor"></a>
+					<h3>Authentication<wbr>Response</h3>
+					<div class="tsd-signature tsd-kind-icon">Authentication<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in api/index.ts:134</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Response for succesfull API authentication call.</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>liveliness<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Submitted data liveness</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5>score<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Submitted data score</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="behaviourerrorresponse" class="tsd-anchor"></a>
+					<h3>Behaviour<wbr>Error<wbr>Response</h3>
+					<div class="tsd-signature tsd-kind-icon">Behaviour<wbr>Error<wbr>Response<span class="tsd-signature-symbol">:</span> <a href="api.html#sessionerrorresponse" class="tsd-signature-type">SessionErrorResponse</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in api/index.ts:190</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Response for failed behavioural event sending API call</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="behaviourresponse" class="tsd-anchor"></a>
+					<h3>Behaviour<wbr>Response</h3>
+					<div class="tsd-signature tsd-kind-icon">Behaviour<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in api/index.ts:120</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Response for succesfull behavoural event sending call.</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>score<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Current behavioural score.</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">EnrollmentStatus.NotEnrolled</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EnrollmentStatus.Enrolled</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Behavioural module enrollemtn status.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="enrollerrorresponse" class="tsd-anchor"></a>
+					<h3>Enroll<wbr>Error<wbr>Response</h3>
+					<div class="tsd-signature tsd-kind-icon">Enroll<wbr>Error<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in api/index.ts:195</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Response for failed enrollment API call</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>error<wbr>Code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ErrorCode.BadRequest</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ErrorCode.InvalidKeyOrSignature</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ErrorCode.InvalidSessionId</span><span class="tsd-signature-symbol"> | </span><a href="../enums/api.errorcode.html#enrollmentfailed" class="tsd-signature-type">EnrollmentFailed</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ErrorCode.ServerError</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="facialenrollmentresponse" class="tsd-anchor"></a>
+					<h3>Facial<wbr>Enrollment<wbr>Response</h3>
+					<div class="tsd-signature tsd-kind-icon">Facial<wbr>Enrollment<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in api/index.ts:148</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Response for succesfull facial enrollment API call</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>images<wbr>Count<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Number of images / videos enrolled succesfully</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="sessionerrorresponse" class="tsd-anchor"></a>
+					<h3>Session<wbr>Error<wbr>Response</h3>
+					<div class="tsd-signature tsd-kind-icon">Session<wbr>Error<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in api/index.ts:178</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Response for failed session creation API call</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>error<wbr>Code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ErrorCode.BadRequest</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ErrorCode.InvalidKeyOrSignature</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ErrorCode.InvalidSessionId</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ErrorCode.ServerError</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="sessionresponse" class="tsd-anchor"></a>
+					<h3>Session<wbr>Response</h3>
+					<div class="tsd-signature tsd-kind-icon">Session<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in api/index.ts:89</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Response for session creation call.</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>behaviour<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">EnrollmentStatus.NotEnrolled</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EnrollmentStatus.Enrolled</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Behavioural module enrollment status.</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5>face<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">EnrollmentStatus.NotEnrolled</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EnrollmentStatus.Enrolled</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EnrollmentStatus.Building</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Facial module enrollment status.</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5>session<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Session identifier</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5>voice<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">EnrollmentStatus.NotEnrolled</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EnrollmentStatus.Enrolled</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EnrollmentStatus.Building</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Voice module enrollment status.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="voiceenrollmentresponse" class="tsd-anchor"></a>
+					<h3>Voice<wbr>Enrollment<wbr>Response</h3>
+					<div class="tsd-signature tsd-kind-icon">Voice<wbr>Enrollment<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in api/index.ts:158</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Response for succesfull voice enrollment API call</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>voice<wbr>Samples<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Samples enrolled succesfully.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="voicetokenresponse" class="tsd-anchor"></a>
+					<h3>Voice<wbr>Token<wbr>Response</h3>
+					<div class="tsd-signature tsd-kind-icon">Voice<wbr>Token<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in api/index.ts:168</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Response for succesfull voice token API call</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>token<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Voice token</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="setbaseurl" class="tsd-anchor"></a>
+					<h3>set<wbr>Base<wbr>Url</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Base<wbr>Url<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api/index.ts:14</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets server url to be used for API calls.
+									Must be called before any API call is invoked.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>url: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>server url</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="setkeyandsecret" class="tsd-anchor"></a>
+					<h3>set<wbr>Key<wbr>And<wbr>Secret</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Key<wbr>And<wbr>Secret<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, secret<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api/index.ts:24</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets Aimbrain API key/secret pair.
+									Must be called before any API call is invoked.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>api key</p>
+									</div>
+								</li>
+								<li>
+									<h5>secret: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>api sercret</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="api.html">api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="behaviour.html">behaviour</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="facial.html">facial</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="session.html">session</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="voice.html">voice</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="../enums/api.enrollmentstatus.html" class="tsd-kind-icon">Enrollment<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="../enums/api.errorcode.html" class="tsd-kind-icon">Error<wbr>Code</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="api.html#authenticationerrorresponse" class="tsd-kind-icon">Authentication<wbr>Error<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="api.html#authenticationresponse" class="tsd-kind-icon">Authentication<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="api.html#behaviourerrorresponse" class="tsd-kind-icon">Behaviour<wbr>Error<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="api.html#behaviourresponse" class="tsd-kind-icon">Behaviour<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="api.html#enrollerrorresponse" class="tsd-kind-icon">Enroll<wbr>Error<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="api.html#facialenrollmentresponse" class="tsd-kind-icon">Facial<wbr>Enrollment<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="api.html#sessionerrorresponse" class="tsd-kind-icon">Session<wbr>Error<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="api.html#sessionresponse" class="tsd-kind-icon">Session<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="api.html#voiceenrollmentresponse" class="tsd-kind-icon">Voice<wbr>Enrollment<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="api.html#voicetokenresponse" class="tsd-kind-icon">Voice<wbr>Token<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="api.html#setbaseurl" class="tsd-kind-icon">set<wbr>Base<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="api.html#setkeyandsecret" class="tsd-kind-icon">set<wbr>Key<wbr>And<wbr>Secret</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
