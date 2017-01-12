@@ -1,11 +1,21 @@
 # Aimbrain WebSDK
 
-## Pre-requisites
+## Docs
+
+You can find the integration documentation for the project in `/docs`
+
+## Pre-built package
+
+You can find the pre-built package in `/downloads`
+
+## Building the package
+
+### Pre-requisites
 
 * Node.js `^6.9`
 * GNU Make
 
-## Setup
+### Setup
 
 Make sure you have all pre-requisites set up on your machine.
 
@@ -19,15 +29,7 @@ For Mac OS X users: make sure you have XCode tools installed.
 
 For Windows users: check out [msys2].
 
-## Docs
-
-You can find the integration documentation for the project in `/docs`
-
-## Pre-built package
-
-You can find the pre-built package in `/downloads`
-
-## Building the package
+### Building process
 
 Run `make` to build the package from source
 
