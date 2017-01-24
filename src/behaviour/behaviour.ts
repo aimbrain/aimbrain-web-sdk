@@ -18,9 +18,10 @@ export let score: number = 0;
 function mouseUpListener(event: MouseEvent) {
   const element = <HTMLElement>event.target;
   if (isTrackable(element)) {
+    let sensitive = isSensitive(element);
     const evt: storage.MouseEvent = {
-      docx: event.pageX,
-      docy: event.pageY,
+      docx: sensitive ? 0 : event.pageX,
+      docy: sensitive ? 0 : event.pageY,
       elx: event.clientX,
       ely: event.clientY,
       btn: event.button,
@@ -34,11 +35,12 @@ function mouseUpListener(event: MouseEvent) {
 }
 
 function mouseDownListener(event: MouseEvent) {
-  const element = <HTMLElement>event.target;
-  if (isTrackable(element)) {
+  const element = <HTMLElement>event.target;  
+  if (isTrackable(element)) {    
+    let sensitive = isSensitive(element);
     const evt: storage.MouseEvent = {
-      docx: event.pageX,
-      docy: event.pageY,
+      docx: sensitive ? 0 : event.pageX,
+      docy: sensitive ? 0 : event.pageY,
       elx: event.clientX,
       ely: event.clientY,
       btn: event.button,
@@ -57,9 +59,10 @@ function mouseMoveListener(event: MouseEvent) {
   if (currentTime - lastTimeGrouped < moveEventsGroupingInterval) {
     return;
   }
+  let sensitive = isSensitive(element);
   const evt: storage.MouseEvent = {
-    docx: event.pageX,
-    docy: event.pageY,
+    docx: sensitive ? 0 : event.pageX,
+    docy: sensitive ? 0 : event.pageY,
     elx: event.clientX,
     ely: event.clientY,
     t: currentTime,
@@ -96,6 +99,10 @@ function keyDownListener(event: KeyboardEvent) {
     };
     storage.addKeyUpDownEvent(evt);
   }
+}
+
+export function setSensitiveSalt(value: string) {
+  sensitiveSalt = value;
 }
 
 export function getElementId(element: HTMLElement) {
@@ -164,7 +171,7 @@ export function setSendingIntervalId(id: number) {
   sendingIntervalId = id;
 }
 
-function isTrackable(element: HTMLElement) {
+function isTrackable(element: HTMLElement) { 
   if (untrackableElements.indexOf(element) >= 0) {
     return false;
   } else if (element.parentElement) {

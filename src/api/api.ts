@@ -69,13 +69,16 @@ export function createSession(userId, browserName, browserOS,
  * Make request to send collected behavioural events.
  * @param sessionId session identifier
  * @param events events to be sent
+ * @param mouseEvents mouse events to be sent
+ * @param keyUpDownEvents key events to be sent
  * @return Created request object
  */
-export function sendEvents(sessionId, events: Array<Object>) {
+export function sendEvents(sessionId, mouseEvents: Array<Object>, keyUpDownEvents: Array<Object>) {
   const payload: any = {
     session: sessionId,
-  };
-  defaults(payload, events);
+    mouseEvents: mouseEvents,
+    keyUpDownEvents: keyUpDownEvents
+  }; 
   const request = new Request<api.BehaviourResponse>({
     method: "post",
     uri: "/v1/behavioural",

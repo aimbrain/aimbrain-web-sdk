@@ -50,33 +50,26 @@ function getIndexedDB(): Promise<IDBDatabase> {
     return Promise.resolve(database);
   }
   return new Promise((resolve, reject) => {
-    const deleteRequest = window.indexedDB.deleteDatabase("aimbrain");
-    deleteRequest.onsuccess = function () {
-      resolve();
-    };
-    deleteRequest.onerror = function () {
-      resolve();
-    };
-  })
-    .then(() => {
-      return new Promise<IDBDatabase>((resolve, reject) => {
-        const dbRequest = window.indexedDB.open("aimbrain", 1);
-        dbRequest.onsuccess = function (evt) {
-          database = this.result;
-          resolve(this.result);
-        };
-        dbRequest.onerror = function (evt) {
-          reject(evt);
-          // console.error("openDb:", evt.error);
-          // TODO fallback - store in memory
-        };
-        dbRequest.onupgradeneeded = function (evt) {
-          const dbRequest = <IDBOpenDBRequest>evt.currentTarget;
-          dbRequest.result.createObjectStore("mouseEvents", { autoIncrement: true });
-          dbRequest.result.createObjectStore("keyUpDownEvents", { autoIncrement: true });
-        };
-      });
+    return new Promise<IDBDatabase>((resolve, reject) => {
+      const dbRequest = window.indexedDB.open("aimbrain-web", 1);
+      dbRequest.onsuccess = function (evt) {
+        database = this.result;
+        resolve(this.result);
+      };
+      dbRequest.onerror = function (evt) {
+        reject(evt);
+        // console.error("openDb:", evt.error);
+        // TODO fallback - store in memory
+      };
+      dbRequest.onupgradeneeded = function (evt) {
+        const dbRequest = <IDBOpenDBRequest>evt.currentTarget;
+        var mouseEvents = dbRequest.result.createObjectStore("mouseEvents", { autoIncrement: true });
+        mouseEvents.createIndex("by_timestamp",  "t");
+        var keyUpDownEvents = dbRequest.result.createObjectStore("keyUpDownEvents", { autoIncrement: true });
+        keyUpDownEvents.createIndex("by_timestamp",  "t");
+      };
     });
+  });
 }
 
 export function addMouseEvent(event: MouseEvent) {
@@ -88,12 +81,10 @@ export function addKeyUpDownEvent(event: KeyUpDownEvent) {
 }
 
 function add(objectStore: string, object: Object) {
-  return getIndexedDB()
-    .then((result) => {
-      const transaction = result
-        .transaction(objectStore, "readwrite");
+  return getIndexedDB().then((result) => {
+      const transaction = result.transaction(objectStore, "readwrite");
       transaction.onerror = function (evt) {
-        console.log("trans error");
+        console.log("tx error");
       };
       const addRequest = transaction
         .objectStore(objectStore)
@@ -112,50 +103,81 @@ function add(objectStore: string, object: Object) {
     });
 }
 
-export function getStoredEvents() {
-  return getIndexedDB()
-    .then((database) => {
-      const transaction = database
-        .transaction(["mouseEvents", "keyUpDownEvents"], "readonly");
-      const allEvents = {};
+export function removeStoredEvents(mouseEvents: Array<MouseEvent>, keyUpDownEvents: Array<KeyUpDownEvent>) {
+  return getIndexedDB().then((database) => {
+    const transaction = database.transaction(["mouseEvents", "keyUpDownEvents"], "readwrite");   
+
+    if (mouseEvents.length > 0) {
+      var timeFrom = mouseEvents[0].t;
+      var timeTo = mouseEvents[mouseEvents.length - 1].t;
+      console.log("Remove mouse events from " + timeFrom + " to " + timeTo);
+
+      var mouseEventsStore = transaction.objectStore("mouseEvents");
+      var mouseEventsIndex = mouseEventsStore.index("by_timestamp");
+      var mouseCursor = mouseEventsIndex.openKeyCursor(IDBKeyRange.bound(timeFrom, timeTo, false, false));
+      mouseCursor.addEventListener("success", (e) => {
+          const cursor: IDBCursor = (<IDBRequest>e.target).result;
+          if (cursor) {
+              mouseEventsStore.delete(cursor.primaryKey);
+              cursor.continue();
+          }
+      });
+    }
+    
+    if (keyUpDownEvents.length > 0) {
+      var timeFrom = keyUpDownEvents[0].t;
+      var timeTo = keyUpDownEvents[keyUpDownEvents.length - 1].t;
+      console.log("Remove key events from " + timeFrom + " to " + timeTo);
+
+      var keyEventsStore = transaction.objectStore("keyUpDownEvents");
+      var keyEventsIndex = keyEventsStore.index("by_timestamp");
+      var keyCursor = keyEventsIndex.openKeyCursor(IDBKeyRange.bound(timeFrom, timeTo, false, false));
+      keyCursor.addEventListener("success", (e) => {
+          const cursor: IDBCursor = (<IDBRequest>e.target).result;
+          if (cursor) {
+              keyEventsStore.delete(cursor.primaryKey);
+              cursor.continue();
+          }
+      });
+    }
+  }).catch((e) => console.log(e));
+}
+
+export function getStoredEvents() : Promise<[Array<MouseEvent>, Array<KeyUpDownEvent>]> {
+  return getIndexedDB().then((database) => {
+      const transaction = database.transaction(["mouseEvents", "keyUpDownEvents"], "readonly");
+      
+      const moveEvents: Array<MouseEvent> = [];
+      const keyUpDownEvents: Array<KeyUpDownEvent> = [];
       let eventGroupsRetrived = 0;
+     
       return new Promise((resolve, reject) => {
-        const mouseEventsRequest = transaction
-          .objectStore("mouseEvents").openCursor();
-        const moveEvents = [];
+        const mouseEventsRequest = transaction.objectStore("mouseEvents").openCursor();
+        
         mouseEventsRequest.addEventListener("success", (e) => {
           const cursor: IDBCursor = (<IDBRequest>e.target).result;
           if (cursor) {
-            moveEvents.push((<IDBCursorWithValue>cursor).value);
+            moveEvents.push((<IDBCursorWithValue>cursor).value as MouseEvent);
             cursor.continue();
           } else {
-            const clearRequest = database.transaction("mouseEvents", "readwrite").objectStore("mouseEvents").clear();
-            clearRequest.addEventListener("success", (e) => {
-              allEvents["mouseEvents"] = moveEvents;
-              eventGroupsRetrived++;
-              if (eventGroupsRetrived === 2) {
-                resolve(allEvents);
-              }
-            });
+            eventGroupsRetrived++;
+            if (eventGroupsRetrived === 2) {
+              resolve([moveEvents, keyUpDownEvents]);
+            }
           }
         });
-        const keyUpDownEventsRequest = transaction
-          .objectStore("keyUpDownEvents").openCursor();
-        const keyUpDownEvents = [];
+        const keyUpDownEventsRequest = transaction.objectStore("keyUpDownEvents").openCursor();
+       
         keyUpDownEventsRequest.addEventListener("success", (e) => {
           const cursor: IDBCursor = (<IDBRequest>e.target).result;
           if (cursor) {
-            keyUpDownEvents.push((<IDBCursorWithValue>cursor).value);
+            keyUpDownEvents.push((<IDBCursorWithValue>cursor).value as KeyUpDownEvent);
             cursor.continue();
-          } else {
-            const clearRequest = database.transaction("keyUpDownEvents", "readwrite").objectStore("keyUpDownEvents").clear();
-            clearRequest.addEventListener("success", (e) => {
-              allEvents["keyUpDownEvents"] = keyUpDownEvents;
-              eventGroupsRetrived++;
-              if (eventGroupsRetrived === 2) {
-                resolve(allEvents);
-              }
-            });
+          } else {            
+            eventGroupsRetrived++;
+            if (eventGroupsRetrived === 2) {
+              resolve([moveEvents, keyUpDownEvents]);
+            }
           }
         });
       });

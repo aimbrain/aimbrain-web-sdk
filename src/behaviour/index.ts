@@ -13,8 +13,9 @@ import {
     setSendingInterval as setSendingIntervalInternal,
     score,
     setScore,
+    setSensitiveSalt as setSensitiveSaltInternal    
 } from "./behaviour";
-import { getStoredEvents } from "./storage";
+import { getStoredEvents, removeStoredEvents } from "./storage";
 import { sendEvents } from "./../api/api";
 import { getSession } from "./../session/session";
 import { api } from "./../api";
@@ -32,10 +33,10 @@ export namespace behaviour {
     /**
      * Marks array or single HTMLElement and its children untrackable (private).
      * @param element element(s) to be marked untrackable.
-     */
+     */ 
     export function addToUntrackableList(element: HTMLElementMixed) {
         let elements;
-        if (typeof element === "HTMLElement") {
+        if (element instanceof HTMLElement) {
             elements = [element];
         } else {
             elements = element;
@@ -53,13 +54,13 @@ export namespace behaviour {
      */
     export function removeFromUntrackableList(element: HTMLElementMixed) {
         let elements;
-        if (typeof element === "HTMLElement") {
+        if (element instanceof HTMLElement) {
             elements = [element];
         } else {
             elements = element;
         }
         for (let e of elements) {
-            if (element && untrackableElements.indexOf(e) < 0) {
+            if (element) {
                 const index = untrackableElements.indexOf(e);
                 if (index > -1) {
                     untrackableElements.splice(index, 1);
@@ -69,12 +70,20 @@ export namespace behaviour {
     }
 
     /**
+     * Set salt used for sensitive view id hashing.
+     * @param value hexadecimal 128bit string value.
+     */
+    export function setSensitiveSalt(value: string) {
+        setSensitiveSaltInternal(value);
+    }
+
+    /**
      * Marks array or single HTMLElement and its children as sensitive.
      * @param element element(s) to be marked sensitive.
      */
     export function addToSensitiveList(element: HTMLElementMixed) {
         let elements;
-        if (typeof element === "HTMLElement") {
+        if (element instanceof HTMLElement) {
             elements = [element];
         } else {
             elements = element;
@@ -92,13 +101,13 @@ export namespace behaviour {
      */
     export function removeFromSensitiveList(element: HTMLElementMixed) {
         let elements;
-        if (typeof element === "HTMLElement") {
+        if (element instanceof HTMLElement) {
             elements = [element];
         } else {
             elements = element;
         }
         for (let e of elements) {
-            if (element && sensitiveElements.indexOf(e) < 0) {
+            if (element) {
                 const index = sensitiveElements.indexOf(e);
                 if (index > -1) {
                     sensitiveElements.splice(index, 1);
@@ -137,13 +146,22 @@ export namespace behaviour {
      */
     export function sendCollectedEvents(serialize?: false): Promise<string> | Promise<api.BehaviourResponse> | Promise<api.BehaviourErrorResponse> {
         return getStoredEvents().then((result) => {
+            let mouseEvents = result[0];
+            if (mouseEvents.length > 0) {
+                console.log("Sending mouse events from " + mouseEvents[0].t + " to " + mouseEvents[mouseEvents.length - 1].t);
+            }
+            let keyUpDownEvents = result[1];
+            if (keyUpDownEvents.length > 0) {
+                console.log("Sending key events from " + keyUpDownEvents[0].t + " to " + keyUpDownEvents[keyUpDownEvents.length - 1].t);
+            }
             return new Promise((resolve, reject) => {
                 if (serialize) {
-                    resolve(sendEvents(getSession().sessionId, <Array<Object>>result).serialize());
-                } else {
-                    sendEvents(getSession().sessionId, <Array<Object>>result).send().then((result) => {
+                    resolve(sendEvents(getSession().sessionId, mouseEvents, keyUpDownEvents).serialize());
+                } else { 
+                    sendEvents(getSession().sessionId, mouseEvents, keyUpDownEvents).send().then((result) => {
                         setScore(result.score);
-                        return Promise.resolve(result);
+                        removeStoredEvents(mouseEvents, keyUpDownEvents);
+                        resolve(result);
                     });
                 }
             });
@@ -162,8 +180,17 @@ export namespace behaviour {
             setIsSending(true);
             setSendingIntervalId(setInterval(function() {
                 getStoredEvents().then((result) => {
-                    sendEvents(getSession().sessionId, <Array<Object>>result).send().then((result) => {
+                    let mouseEvents = result[0];
+                    if (mouseEvents.length > 0) {
+                        console.log("Sending mouse events from " + mouseEvents[0].t + " to " + mouseEvents[mouseEvents.length - 1].t);
+                    }
+                    let keyUpDownEvents = result[1];
+                    if (keyUpDownEvents.length > 0) {
+                        console.log("Sending key events from " + keyUpDownEvents[0].t + " to " + keyUpDownEvents[keyUpDownEvents.length - 1].t);
+                    }
+                    sendEvents(getSession().sessionId, mouseEvents, keyUpDownEvents).send().then((result) => {
                         setScore(result.score);
+                        removeStoredEvents(mouseEvents, keyUpDownEvents);
                     });
                 });
             }, sendingInterval));
