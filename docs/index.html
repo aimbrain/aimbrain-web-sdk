@@ -65,7 +65,7 @@
 			<div class="tsd-panel tsd-typography">
 				<h2 id="including-sdk-to-web-page">Including SDK to web page</h2>
 				<p>To use SDK you have to include provided javascript into each page using SDK functionality.</p>
-				<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/scripts/aimbrain-web-sdk.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+				<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/scripts/websdk.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre><p>To communicate with the server the application must be configured with
 					a valid API key and secret. These are set using method <a href="modules/api.html#setkeyandsecret">setKeyAndSecret</a>
 				before calling to other API functions:</p>
@@ -88,19 +88,19 @@
 				<p>SDK functionality is divided into multiple modules. Refer to each module
 				documentation for more details and usage examples.</p>
 				<h3 id="api-module">API module</h3>
-				<p><a href="modules/api.html">API module</a> contains SDK authorisation and definitions used
-				in other modules.</p>
+				<p><a href="modules/api.html">API module</a> contains SDK credential calls, low level api calls
+				and definitions used in other modules.</p>
 				<h3 id="session-module">Session module</h3>
 				<p><a href="modules/session.html">Session module</a> provides session management.</p>
 				<h3 id="behaviour-module">Behaviour module</h3>
 				<p><a href="modules/behaviour.html">Behaviour module</a> provides behavioural tracking.</p>
 				<h3 id="facial-module">Facial module</h3>
 				<p><a href="modules/facial.html">Facial module</a> provides facial enrolment and authentication.</p>
-				<h3 id="response-module">Response module</h3>
+				<h3 id="voice-module">Voice module</h3>
 				<p><a href="modules/voice.html">Voice module</a> provides voice enrolment and authentication.</p>
 				<h2 id="promise-usage-in-the-sdk">Promise usage in the SDK</h2>
 				<p>Async SDK calls return promise objects. For example:</p>
-				<pre><code>var recordPromise = Aimbrain.facial.recordFaceVideo();
+				<pre><code>var recordPromise = Aimbrain.facial.recordFaceVideo(options);
 recordPromise.<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(result)</span> =&gt;</span> {
     // recording done, use result
 }).catch(<span class="hljs-function"><span class="hljs-params">(<span class="hljs-built_in">error</span>)</span> =&gt;</span> {

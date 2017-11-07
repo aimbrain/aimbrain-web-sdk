@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tracking Tests</title>
+    <script type="text/javascript">
+        if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
+            document.write('<script src="js/bluebird.min.js"><\/script>');
+        }
+    </script>
+
+    <script src="aimbrain-web-sdk.js"></script>
+
+    <style type="text/css">
+        #test-elements {
+            box-sizing: border-box;
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 50%;
+            width: 50%;
+            background: #eeeeee;
+            padding: 0 2em;
+            border-bottom: 1px dotted black;
+            overflow-y: scroll;
+        }
+
+        #test-elements input {
+            width: 50px;
+        }
+
+        #content-area {
+            font-size: 11px;
+        }
+
+        #storage-contents {
+            box-sizing: border-box;
+            position: fixed;
+            right: 0;
+            top: 50%;
+            bottom: 0;
+            width: 50%;
+            background: #eeeeee;
+            padding-left: 2em;
+            overflow: auto;
+        }
+
+        .container {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px dotted gray;
+            background: #dddddd;
+        }
+
+        .container-inner {
+            margin-top: 10px;
+        }
+
+        .container-inner > div {
+            float: left;            
+        }
+
+        .container-inner:after {
+            content: ' ';
+            display: block;
+            width: 0;
+            height: 0;
+            clear: both;
+        }
+
+        .container-inner span {
+            width: 33%;
+            float: left;
+            box-sizing: border-box;
+            display: block;
+            border: 1px dotted gray;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        body {
+            margin: 40px;
+            max-width: 700px;
+            line-height: 1.5;
+            font-size: 18px;
+            color: #444;
+            padding: 0 10px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2
+        }
+    </style>
+
+    <script type="text/javascript">
+        function showEvents(mouse, key) {
+            let out = "<p>Mouse: <br> " + JSON.stringify(mouse) + "</p>" +
+                "<p>Key: <br> " + JSON.stringify(key) + "</p>";
+            document.getElementById('content-area').innerHTML = out;
+        }
+
+        function displayDb() {
+            Aimbrain.storage.getSdkDB().then(function (db) {
+                function getAll(store) {
+                    let transaction = db.transaction(["mouseEvents", "keyEvents"], "readonly");
+                    return new Promise(function (resolve, reject) {
+                        const request = transaction.objectStore(store).openCursor();
+                        const result = [];
+                        request.addEventListener("success", function (e) {
+                            let cursor = e.target.result;
+                            if (cursor) {
+                                result.push(cursor.value);
+                                cursor.continue();
+                            } else {
+                                resolve(result);
+                            }
+                        });
+
+                        request.addEventListener("error", function(e) {
+                            reject(e);
+                        });
+                    });
+                }
+
+                Promise.all([getAll("mouseEvents"), getAll("keyEvents")]).then(function (result) {
+                    showEvents(result[0], result[1]);
+                });
+            });
+        }
+
+        function dropDb() {
+            Aimbrain.storage.dropSdkDB();
+        }
+
+        function e(id) {
+            return document.getElementById(id);
+        }
+
+        function setBSensitive() {
+            Aimbrain.behaviour.addToSensitiveList(e('container-b'));
+        }
+
+        function unsetBSensitive() {
+            Aimbrain.behaviour.removeFromSensitiveList(e('container-b'));
+        }
+
+        function setCIgnored() {
+            Aimbrain.behaviour.addToUntrackableList(e('container-c'));
+        }
+
+        function unsetCIgnored() {
+            Aimbrain.behaviour.removeFromUntrackableList(e('container-c'));
+        }
+    </script>
+</head>
+
+<body>
+    <div id="test-elements">
+        <h2>Test area</h2>
+
+        <div data-aimbrain-id="container-a" class="container">
+            Container #1
+
+            <button onclick="Aimbrain.behaviour.startTracking()" accesskey="b">Begin Tracking</button>
+            <button onclick="Aimbrain.behaviour.stopTracking()" accesskey="e">End Tracking</button>
+        
+            <div class="container-inner">
+                <span data-aimbrain-id="element-a">
+                    #a - normal 
+                    <input type="text" id="input-a">
+                </span>
+
+                <span data-aimbrain-id="element-b" data-aimbrain-sensitive="true">
+                    #b - sensitive
+                    <input type="text" id="input-b">
+                </span>
+
+                <span data-aimbrain-id="element-c" data-aimbrain-ignored="true">
+                    #c - ignored
+                    <input type="text" id="input-c">
+                </span>
+            </div>
+        </div>
+        
+        <div id="container-b" data-aimbrain-id="container-b" data-aimbrain-sensitive="true" class="container">
+            Container #2 - sensitive
+
+            <button onclick="Aimbrain.behaviour.startTracking()" accesskey="b">Begin Tracking</button>
+            <button onclick="Aimbrain.behaviour.stopTracking()" accesskey="e">End Tracking</button>
+            <button onclick="setBSensitive()" accesskey="e">Set Sensitive</button>
+            <button onclick="unsetBSensitive()" accesskey="e">Unset Sensitive</button>
+            
+            <div class="container-inner">
+                <span data-aimbrain-id="element-d">
+                    #d - normal
+                    <input type="text" id="input-d">
+                </span>
+
+                <span data-aimbrain-id="element-e" data-aimbrain-sensitive="true">
+                    #e - sensitive
+                    <input type="text" id="input-e">
+                </span>
+
+                <span data-aimbrain-id="element-f" data-aimbrain-ignored="true">
+                    #f - ignored
+                    <input type="text" id="input-f">
+                </span>
+            </div>
+        </div>
+
+        <div id="container-c" data-aimbrain-id="container-c" data-aimbrain-ignored="true" class="container">
+            Container #3 - ignored
+
+            <button onclick="Aimbrain.behaviour.startTracking()" accesskey="b">Begin Tracking</button>
+            <button onclick="Aimbrain.behaviour.stopTracking()" accesskey="e">End Tracking</button>
+            <button onclick="setCIgnored()" accesskey="e">Set Ignored</button>
+            <button onclick="unsetCIgnored()" accesskey="e">Unset Ignored</button>
+           
+            <div  class="container-inner">
+                <span data-aimbrain-id="element-g">
+                    #g - normal
+                    <input type="text" id="input-g">
+                </span>
+
+                <span data-aimbrain-id="element-h" data-aimbrain-sensitive="true">
+                    #h - sensitive
+                    <input type="text" id="input-h">
+                </span>
+
+                <span data-aimbrain-id="element-i" data-aimbrain-ignored="true">
+                    #i - ignored
+                    <input type="text" id="input-i">
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div id="storage-contents">
+        <h2>Storage contents</h2>
+        <button onclick="displayDb()">Show</button>
+        <button onclick="dropDb()">Drop DB</button>
+        <p id="content-area">
+        </p>
+    </div>
+
+    <div id="tests">
+        <h1>Behavioural tracking tests</h1>
+
+        <h2>#track1 - normal container</h2>
+        <p>
+            Test steps:
+            <ul>
+                <li>Drop db, begin tracking</li>
+                <li>Use container #1</li>
+                <li>Click on each input, enter letter</li>
+                <li>Stop tracking</li>
+            </ul>
+            Expected result:
+            <ul>
+                <li>Mouse events and key events are tracked</li>
+                <li>Events in normal / sensitive areas tracked</li>
+                <li>Events in ignored not tracked</li>
+                <li>Event ids in sensitive #b are hashed</li>
+                <li>No events for ignored #c captured</li>
+            </ul>
+        </p>
+
+        <h2>#track2 - sensitive container</h2>
+        <p>
+            Test steps:
+            <ul>
+                <li>Drop db, make container #2 sensitive</li>
+                <li>Begin tracking</li>
+                <li>Click on each container input, enter letter</li>
+                <li>Stop tracking</li>
+            </ul>
+            Expected result:
+            <ul>
+                <li>Mouse events and key events are tracked</li>
+                <li>Events in normal / sensitive areas tracked</li>
+                <li>Events in ignored not tracked</li>
+                <li>All event ids in #2 are hashed</li>
+                <li>No events for ignored #f captured</li>
+            </ul>
+        </p>
+
+        <h2>#track3 - unset sensitive container</h2>
+        <p>
+            Test steps:
+            <ul>
+                <li>Drop db, set container #2 sensitive, unset container #2 sensitive</li>
+                <li>Begin tracking</li>
+                <li>Use container #2</li>
+                <li>Click on each input, enter letter</li>
+                <li>Stop tracking</li>
+            </ul>
+            Expected result:
+            <ul>
+                <li>Mouse events and key events are tracked</li>
+                <li>Events in normal / sensitive areas tracked</li>
+                <li>Events in ignored not tracked</li>
+                <li>Event ids in sensitive #e are hashed</li>
+                <li>No events for ignored #f captured</li>
+            </ul>
+        </p>
+
+        <h2>#track4 - ignored container</h2>
+        <p>
+            Test steps:
+            <ul>
+                <li>Drop db, set container #3 sensitive</li>
+                <li>Begin tracking</li>
+                <li>Use container #3</li>
+                <li>Click on each input, enter letter</li>
+                <li>Stop tracking</li>
+            </ul>
+            Expected result:
+            <ul>
+                <li>Events in container #3 are not tracked</li>
+            </ul>
+        </p>
+
+        <h2>#track5 - unset ignored container</h2>
+        <p>
+            Test steps:
+            <ul>
+                <li>Drop db, set container #3 ignored, unset #3 ignored</li>
+                <li>Begin tracking</li>
+                <li>Use container #3</li>
+                <li>Click on each input, enter letter</li>
+                <li>Stop tracking</li>
+            </ul>
+            Expected result:
+            <ul>
+                <li>Mouse events and key events are tracked</li>
+                <li>Events in normal / sensitive areas tracked</li>
+                <li>Events in ignored not tracked</li>
+                <li>Event ids in sensitive #h are hashed</li>
+                <li>No events for ignored #i captured</li>
+            </ul>
+        </p>
+    </div>
+</body>
+</html>

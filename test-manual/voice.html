@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Voice Record Tests</title>
+    <script type="text/javascript">
+        if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
+            document.write('<script src="js/bluebird.min.js"><\/script>');
+        }
+    </script>
+    <script src="aimbrain-web-sdk.js"></script>
+
+    <style type="text/css">
+        body{
+            margin: 40px auto;
+            max-width: 700px;
+            line-height: 1.5;
+            font-size: 18px;
+            color: #444;
+            padding: 0 10px;
+        }
+        
+        h1, h2, h3 {
+            line-height: 1.2
+        }
+    </style>
+
+    <script type="text/javascript">
+        function setResult(id, result) {
+            document.getElementById(id).innerHTML = result;        
+        }
+
+        function setResultResolved(id, result) {
+            let out = "Resolved: <br>" +
+                    '<audio controls="controls" autobuffer="autobuffer">' +
+                        '<source type="audio/wav" src="data:audio/wav;base64,' + result[0] + '" />' +
+                        '<source type="audio/wave" src="data:audio/wave;base64,' + result[0] + '" />' +
+                    '</audio>';
+            setResult(id, out);
+        }
+
+        function setResultRejected(id, e) {
+            setResult(id, "Rejected: " + JSON.stringify(e));
+        }
+
+        let token = "This is quite a bit longer token text to show";
+        let options = { 
+            "headerText" : "This is top help text", 
+            "progressStartText": "You will have 5 seconds",
+            "capturingText": "Recording...", 
+            "progressTimerText" : "{s} seconds left."
+        };
+
+        function runSupport() {
+            let testId = 'result-support';
+            setResult(testId, "N/A");
+            let supported = Aimbrain.voice.isSupported();
+            setResult(testId, supported ? "Yes" : "No");
+        }
+
+        function runOpenClose() {
+            let testId = 'result-open-close';
+            setResult(testId, "N/A");
+
+            Aimbrain.voice.recordVoice(token, options)
+                .then(function(result) {
+                    setResultResolved(testId, result);
+                })
+                .catch(function(e) {
+                    setResultRejected(testId, e);
+                });
+        }
+
+        function runStartClose() {
+            let testId = 'result-start-close';
+            setResult(testId, "N/A");
+            
+            Aimbrain.voice.recordVoice(token, options)
+                .then(function(result) {
+                    setResultResolved(testId, result);
+                })
+                .catch(function (e) {
+                    setResultRejected(testId, e);
+                });
+        }
+
+        function runStartStop() {
+            let testId = 'result-start-stop';
+            setResult(testId, "N/A");
+
+            Aimbrain.voice.recordVoice(token, options)
+                .then(function(result) {
+                    setResultResolved(testId, result);
+                })
+                .catch(function(e) {
+                    setResultRejected(testId, e);
+                });
+        }
+
+        function runDisableMic() {
+            let testId = 'result-disable-mic';
+            setResult(testId, "N/A");
+
+            Aimbrain.voice.recordVoice(token, options)
+                .then(function(result) {
+                    setResultResolved(testId, result);
+                })
+                .catch(function(e) {
+                    setResultRejected(testId, e);
+                });
+        }
+
+        function runRecord() {
+            let testId = 'result-record';
+            setResult(testId, "N/A");
+
+            Aimbrain.voice.recordVoice(token, options)
+                .then(function(result) {
+                    setResultResolved(testId, result);
+                })
+                .catch(function(e) {
+                    setResultRejected(testId, e);
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Voice Record Tests</h1>
+
+    <h2>#voice1 - module support</h2>
+    <button onclick="runSupport()">Run test</button>
+    <p>
+        Test notes:
+        <ul>
+            <li>Run test</li>
+            <li>Result must be <code>Yes</code> if audio recording is supported by browser</li>
+            <li>If result is no, N/A tests #2 - #6</li>
+        </ul>
+    </p>
+    <p>
+        Test result: <br>
+        <code id="result-support" class="results">
+            N/A
+        </code>
+    </p>  
+
+    <h2>#voice2 - open and close popup</h2>
+    <button onclick="runOpenClose()">Run test</button>
+    <p>
+        Test notes:
+        <ul>
+            <li>Run test</li>
+            <li>Popup must have top text, token and left text</li>
+            <li>Popup must have correct layout</li>
+            <li>Close popup</li>
+            <li>Result must be <code>Rejected: 0</code></li>
+        </ul>
+    </p>
+    <p>
+        Test result: <br>
+        <code id="result-open-close" class="results">
+            N/A
+        </code>
+    </p>   
+    
+    <h2>#voice3 - start and close</h2>
+    <button onclick="runStartClose()">Run test</button>
+    <p>
+        Test notes:
+        <ul>
+            <li>Run test, start recording</li>
+            <li>Once started capture hint and progress must be shown</li>
+            <li>Popup must have correct layout</li>
+            <li>Close popup</li>
+            <li>Result must be <code>Rejected: 0</code></li>
+            <li>Repeat test quickly 2 - 3 times</li>
+        </ul>
+    </p>
+    <p>
+        Test result: <br>
+        <code id="result-start-close" class="results">
+            N/A
+        </code>
+    </p>  
+
+    <h2>#voice4 - start and stop</h2>
+    <button onclick="runStartStop()">Run test</button>
+    <p>
+        Test notes:
+        <ul>
+            <li>Run test, start recording</li>
+            <li>Stop recording</li>
+            <li>Result must be <code>Rejected: 0</code></li>
+            <li>Repeat test quickly 2 - 3 times</li>
+        </ul>
+    </p>
+    <p>
+        Test result: <br>
+        <code id="result-start-stop" class="results">
+            N/A
+        </code>
+    </p>  
+
+    <h2>#voice5 - disabled mic</h2>
+    <button onclick="runDisableMic()">Run test</button>
+    <p>
+        Test notes:
+        <ul>
+            <li>Disable microphone premission</li>
+            <li>Run test, start recording</li>
+            <li>Result must be <code>Rejected: -2</code></li>
+        </ul>
+    </p>
+    <p>
+        Test result: <br>
+        <code id="result-disable-mic" class="results">
+            N/A
+        </code>
+    </p>  
+
+    <h2>#voice6 - record</h2>
+    <button onclick="runRecord()">Run test</button>
+    <p>
+        Test notes:
+        <ul> 
+            <li>Run test, start recording</li>
+            <li>Result must play recorded audio</li>
+        </ul>
+    </p>
+    <p>
+        Test result: <br>
+        <code id="result-record" class="results">           
+        </code>
+    </p>  
+</body>
+
+</html>

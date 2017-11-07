@@ -1,0 +1,172 @@
+.aimbrain-dialog-wrapper {
+    position: fixed;
+    background-color: rgba(0, 0, 0, .75);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    font-size:14px;
+}
+
+.aimbrain-dialog-face {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    box-shadow: 2px 2px 25px rgba(0, 0, 0, .25);
+    box-sizing: border-box;
+    color: #fff;
+}
+
+.aimbrain-dialog-face {
+    background-color: #000;
+    width: 360px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+}
+
+.aimbrain-dialog-face {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.aimbrain-face-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    background-image: url(close-light.svg);
+    background-size: 75%;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.aimbrain-face-close:active {
+    opacity: 0.75;
+}
+
+.aimbrain-face-video-wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.aimbrain-face-video {
+    height: 480px;
+    margin: 0;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.aimbrain-face-viewfinder {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    
+    background-image: url(face-overlay.svg);
+    position: absolute;
+    background-size: 100% 100%;
+}
+
+.aimbrain-face-header-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 70px;
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 10;
+}
+
+.aimbrain-face-filler {   
+    flex-grow: 1;  
+    display: flex;
+}
+
+.aimbrain-face-hint-label {
+    text-align: center;
+    font-size: 16px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 10;
+}
+
+.aimbrain-face-controls {
+    min-height: 70px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 28px;
+    z-index: 10;
+}
+
+.aimbrain-face-record-button {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url(camera-light.svg);
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    z-index: 9999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.aimbrain-face-stop-button {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url(stop-light.svg);
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    z-index: 9999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.aimbrain-face-progress-label {
+    max-width: 30%;
+    text-align: center;
+}
+
+.aimbrain-face-record-button:active, .aimbrain-face-stop-button:active  {
+    opacity: 0.75;
+}
+
+.aimbrain-face-canvas {
+    display: block;
+    width: 240px;
+    height: 320px;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+

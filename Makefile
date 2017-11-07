@@ -6,9 +6,9 @@ DOCS_TITLE := "AimBrain WebSDK"
 ## Add binaries in node_modules to PATH
 export PATH := $(PATH):node_modules/.bin
 
-## Default APP_ENV to 'local' (local environment)
+## Default APP_ENV to 'development' (local environment)
 ifndef $(APP_ENV)
-	export APP_ENV := local
+	export APP_ENV := development
 endif
 
 export BUNDLE_NAME := aimbrain-web-sdk.js
@@ -44,7 +44,7 @@ build/tsc.stub: node_modules $(TS_FILES)
 ##  Phony targets
 ## --------------------------------------------------------
 
-.PHONY: serve test lint clean distclean
+.PHONY: serve test lint clean distclean docs
 
 serve: node_modules
 	webpack-dev-server
@@ -63,5 +63,6 @@ clean:
 distclean: clean
 	@rm -rf node_modules
 
-docs:
+docs: node_modules
+	@rm -rf build/docs
 	@typedoc --tsconfig tsconfig.doc.json --out build/docs/ --theme docs/theme/ --readme docs/readme.md --includes docs/modules/ --name $(DOCS_TITLE) --excludeExternals --excludePrivate --ignoreCompilerErrors --mode file

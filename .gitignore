@@ -7,6 +7,7 @@
 /node_modules
 /typings
 /build
+/coverage
 /dist
 /storage
 /.tmp

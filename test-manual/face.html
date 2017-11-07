@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Face Record Tests</title>
+    <script type="text/javascript">
+        if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
+            document.write('<script src="js/bluebird.min.js"><\/script>');
+        }
+    </script>
+    <script src="aimbrain-web-sdk.js"></script>
+
+    <style type="text/css">
+        body{
+            margin: 40px auto;
+            max-width: 700px;
+            line-height: 1.5;
+            font-size: 18px;
+            color: #444;
+            padding: 0 10px;
+        }
+        
+        h1, h2, h3 {
+            line-height: 1.2
+        }
+    </style>
+
+    <script type="text/javascript">
+        function setResult(id, result) {
+            document.getElementById(id).innerHTML = result;        
+        }
+
+        function setResultResolvedVideo(id, result) {
+            let out = "Resolved: <br>";
+            for (let i = 0; i < result.length; i++) {
+                out += '<video controls>' +
+                           '<source type="video/webm" src="data:video/webm;base64,' + result[0] + '" />' +
+                       '</video>' +  '<br>';
+            }
+            setResult(id, out);
+        }
+
+        function setResultResolvedImages(id, result) {
+            let out = "Resolved: <br>";
+            for (let i = 0; i < result.length; i++) {
+                out += '<img src="data:image/jpeg;base64,' + result[i] + '"> <br>';
+            }
+            setResult(id, out);
+        }
+
+        function setResultRejected(id, e) {
+            setResult(id, "Rejected: " + JSON.stringify(e));
+        }
+
+        let options = { 
+            "headerText" : "This is top help text", 
+            "hintText": "Bottom hint test",
+            "capturingText": "Recording...", 
+            "progressTimerText" : "{s} seconds left."
+        };
+
+        function runSupport() {
+            let testId = 'result-support';
+            setResult(testId, "N/A");
+            let hasVideo = Aimbrain.facial.isSupported(Aimbrain.facial.RecordingMode.Video);
+            let hasImages = Aimbrain.facial.isSupported(Aimbrain.facial.RecordingMode.Images);
+            let result = "Video: " + (hasVideo ? "Yes" : "No") + "<br>" +
+                         "Images: " + (hasImages ? "Yes" : "No");
+            setResult(testId, result);
+        } 
+        
+        function recordForTest(id) {
+            let hasVideo = Aimbrain.facial.isSupported(Aimbrain.facial.RecordingMode.Video);
+            if (hasVideo) {
+                Aimbrain.facial.recordFaceVideo(options)
+                    .then(function(result) {
+                        setResultResolvedVideo(id, result);
+                    })
+                    .catch(function(e) {
+                        setResultRejected(id, e);
+                    });
+            }
+            else {
+                Aimbrain.facial.recordFaceImages(options, 3)
+                    .then(function(result) {
+                        setResultResolvedImages(id, result);
+                    })
+                    .catch(function(e) {
+                        setResultRejected(id, e);
+                    });
+            }
+        }
+
+        function runOpenClose() {
+            let testId = 'result-open-close';
+            setResult(testId, "N/A");
+            recordForTest(testId);
+        }
+
+        function runStartClose() {
+            let testId = 'result-start-close';
+            setResult(testId, "N/A");
+            recordForTest(testId);
+        }
+
+        function runStartStop() {
+            let testId = 'result-start-stop';
+            setResult(testId, "N/A");
+            recordForTest(testId);
+        }
+
+        function runDisableCamera() {
+            let testId = 'result-disable-camera';
+            setResult(testId, "N/A");
+            recordForTest(testId);
+        }
+
+        function runVideoRecord() {
+            let testId = 'result-record';
+            setResult(testId, "N/A");
+
+            Aimbrain.facial.recordFaceVideo(options)
+                .then(function(result) {
+                    setResultResolvedVideo(testId, result);
+                })
+                .catch(function(e) {
+                    setResultRejected(testId, e);
+                });
+        }
+
+        function runImageRecord() {
+            let testId = 'result-image-record';
+            setResult(testId, "N/A");            
+            Aimbrain.facial.recordFaceImages(options, 3)
+                .then(function(result) {
+                    setResultResolvedImages(testId, result);
+                })
+                .catch(function(e) {
+                    setResultRejected(testId, e);
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Face Record Tests</h1>
+
+    <h2>#face1 - module support</h2>
+    <button onclick="runSupport()">Run test</button>
+    <p>
+        Test notes:
+        <ul>
+            <li>Run test</li>
+            <li>Video result must be <code>Yes</code> if video recording is supported by browser</li>
+            <li>If video result is no, N/A tests #6</li>
+            <li>Image result must be <code>Yes</code> if image recording is supported by browser</li>
+            <li>If image result is no, N/A test #7</li>
+            <li>If both video and image result is no, N/A tests #2 - #7</li>
+        </ul>
+    </p>
+    <p>
+        Test result: <br>
+        <code id="result-support" class="results">
+            N/A
+        </code>
+    </p>   
+
+    <h2>#face2 - open and close popup</h2>
+    <button onclick="runOpenClose()">Run test</button>
+    <p>
+        Test notes:
+        <ul>
+            <li>Run test</li>
+            <li>Popup must have top text, bottom text</li>
+            <li>Popup must have correct layout</li>
+            <li>Close popup</li>
+            <li>Result must be <code>Rejected: 0</code></li>
+        </ul>
+    </p>
+    <p>
+        Test result: <br>
+        <code id="result-open-close" class="results">
+            N/A
+        </code>
+    </p>   
+    
+    <h2>#face3 - start and close</h2>
+    <button onclick="runStartClose()">Run test</button>
+    <p>
+        Test notes:
+        <ul>
+            <li>Run test, start recording</li>
+            <li>Once started capture hint and progress must be shown</li>
+            <li>Popup must have correct layout</li>
+            <li>Close popup</li>
+            <li>Result must be <code>Rejected: 0</code></li>
+            <li>Repeat test quickly 2 - 3 times</li>
+        </ul>
+    </p>
+    <p>
+        Test result: <br>
+        <code id="result-start-close" class="results">
+            N/A
+        </code>
+    </p>  
+
+    <h2>#face4 - start and stop</h2>
+    <button onclick="runStartStop()">Run test</button>
+    <p>
+        Test notes:
+        <ul>
+            <li>Run test, start recording</li>
+            <li>Stop recording</li>
+            <li>Result must be <code>Rejected: 0</code></li>
+            <li>Repeat test quickly 2 - 3 times</li>
+        </ul>
+    </p>
+    <p>
+        Test result: <br>
+        <code id="result-start-stop" class="results">
+            N/A
+        </code>
+    </p>  
+
+    <h2>#face5 - disabled camera</h2>
+    <button onclick="runDisableCamera()">Run test</button>
+    <p>
+        Test notes:
+        <ul>
+            <li>Disable camera premission</li>
+            <li>Run test, start recording</li>
+            <li>Result must be <code>Rejected: -2</code></li>
+        </ul>
+    </p>
+    <p>
+        Test result: <br>
+        <code id="result-disable-camera" class="results">
+            N/A
+        </code>
+    </p>  
+
+    <h2>#face6 - record video</h2>
+    <button onclick="runVideoRecord()">Run test</button>
+    <p>
+        Test notes:
+        <ul> 
+            <li>Run test, start recording</li>
+            <li>Result must play recorded video</li>
+        </ul>
+    </p>
+    <p>
+        Test result: <br>
+        <code id="result-record" class="results">           
+        </code>
+    </p>
+    
+    
+    <h2>#face7 - record images</h2>
+    <button onclick="runImageRecord()">Run test</button>
+    <p>
+        Test notes:
+        <ul> 
+            <li>Run test, start recording</li>
+            <li>Result must contain 5 recorded images</li>
+        </ul>
+    </p>
+    <p>
+        Test result: <br>
+        <code id="result-image-record" class="results">           
+        </code>
+    </p>  
+</body>
+
+</html>

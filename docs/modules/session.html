@@ -135,9 +135,6 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in session/index.ts:41</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -152,14 +149,11 @@
 					<a name="establishsession" class="tsd-anchor"></a>
 					<h3>establish<wbr>Session</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">establish<wbr>Session<span class="tsd-signature-symbol">(</span>userId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, serialize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span></li>
+						<li class="tsd-signature tsd-kind-icon">establish<wbr>Session<span class="tsd-signature-symbol">(</span>userId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, metadata<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, serialize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#sessionresult" class="tsd-signature-type">SessionResult</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in session/index.ts:18</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -171,28 +165,73 @@
 								<li>
 									<h5>userId: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>unique user identifier</p>
+										<div class="lead">
+											<p>unique user identifier</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> metadata: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>integration specific metadata</p>
+										</div>
 									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> serialize: <span class="tsd-signature-type">false</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>flag to return serialised request instead of performing API call</p>
+										<div class="lead">
+											<p>flag to request serialized request body instead of making API call</p>
+										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Promise</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Promise</span>
-							</h4>
-							<p>Returns promise, which resolves to:</p>
-							<ul>
-								<li>string with API request body if serialize flag was set to true</li>
-								<li><a href="api.html#sessionresponse">SessionResponse</a> if serialize falg was set to false.</li>
-								<li><a href="api.html#sessionerrorresponse">SessionErrorResponse</a> on error.</li>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#sessionresult" class="tsd-signature-type">SessionResult</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to [[SessionResponse]]</p>
+						</li>
+					</ul>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">establish<wbr>Session<span class="tsd-signature-symbol">(</span>userId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, metadata<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, serialize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create new session. Session must be created before making any other API call requiring session.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>userId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>unique user identifier</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> metadata: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>integration specific metadata</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> serialize: <span class="tsd-signature-type">true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>flag to request serialized request body instead of making API call</p>
+										</div>
+									</div>
+								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to string with API request body</p>
 						</li>
 					</ul>
 				</section>
@@ -205,9 +244,6 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in session/index.ts:58</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
@@ -215,7 +251,7 @@
 								<span class="tsd-signature-symbol"> | </span>
 								<span class="tsd-signature-type">null</span>
 							</h4>
-							<p>Returns current session identifier or null if there is no active session.</p>
+							<p>Current session identifier or null if there is no active session.</p>
 						</li>
 					</ul>
 				</section>
@@ -228,14 +264,11 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in session/index.ts:75</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>Returns true if current session is currently building behavioural template.</p>
+							<p>True if current session is currently building behavioural template.</p>
 						</li>
 					</ul>
 				</section>
@@ -248,14 +281,11 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in session/index.ts:68</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>Returns true if current session completed behavioural enrollment.</p>
+							<p>True if current session completed behavioural enrollment.</p>
 						</li>
 					</ul>
 				</section>
@@ -268,14 +298,11 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in session/index.ts:89</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>Returns true if current session is currently building face template.</p>
+							<p>True if current session is currently building face template.</p>
 						</li>
 					</ul>
 				</section>
@@ -288,14 +315,11 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in session/index.ts:82</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>Returns true if current session completed facial enrollment.</p>
+							<p>True if current session completed facial enrollment.</p>
 						</li>
 					</ul>
 				</section>
@@ -308,14 +332,11 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in session/index.ts:48</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>Returns true if session was established</p>
+							<p>True if session was established</p>
 						</li>
 					</ul>
 				</section>
@@ -328,14 +349,11 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in session/index.ts:103</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>Returns true if current session is currently building voice template.</p>
+							<p>True if current session is currently building voice template.</p>
 						</li>
 					</ul>
 				</section>
@@ -348,14 +366,11 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in session/index.ts:96</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>Returns true if current session completed voice enrollment.</p>
+							<p>True if current session completed voice enrollment.</p>
 						</li>
 					</ul>
 				</section>
@@ -368,14 +383,11 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in session/index.ts:34</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Sets current session identifier. Call does not invoke any API request and is meant
-									to be used with request serailization.</p>
+									to be used with request serialization.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>

@@ -1,106 +1,111 @@
-import { createSession, getSession as getSessionObject, setSession, destroySession, Session } from "./session";
+import { Promise } from "./../util/promise";
 import { api } from "./../api";
+import { Session, getCachedSession, setCachedSession, clearCache,  } from "./state";
+import * as calls from "./calls";
 
 /**
  * [[include:session-module.md]]
  */
 export namespace session {
-   
+       
+    /**
+     * @return Promise resolving to [[SessionResponse]]
+     */
+    export function establishSession(userId: string, metadata?: string, serialize?: false): Promise<api.SessionResult>;    
+    /**
+     * @return Promise resolving to string with API request body
+     */
+    export function establishSession(userId: string, metadata?: string, serialize?: true): Promise<string>; 
     /**
      * Create new session. Session must be created before making any other API call requiring session.
      * @param userId unique user identifier
-     * @param serialize flag to return serialised request instead of performing API call
-     * @return Returns promise, which resolves to:
-     * * string with API request body if serialize flag was set to true
-     * * [[SessionResponse]] if serialize falg was set to false.
-     * * [[SessionErrorResponse]] on error.
-     */
-    export function establishSession(userId: string, serialize?: false): Promise<string> | Promise<api.SessionResponse> | Promise<api.SessionErrorResponse> {
-        if (serialize) {
-            return createSession(userId, null, serialize);
-        } else {
-            return createSession(userId, null, serialize).then((result) => {
-                return Promise.resolve(result.res);
-            }).catch((result) => { Promise.reject(result); });
-        }
+     * @param metadata integration specific metadata
+     * @param serialize flag to request serialized request body instead of making API call
+     */   
+    export function establishSession(userId: string, metadata?, serialize?): Promise<api.SessionResult> | Promise<string> {
+        return calls.createSession(userId, metadata, serialize);
+        
     }
 
     /**
      * Sets current session identifier. Call does not invoke any API request and is meant 
-     * to be used with request serailization.
+     * to be used with request serialization.
      * @param userId unique user identifier
      * @param sessionId sessionId to be used in serialized requests
      */ 
     export function setExistingSession(userId: string, sessionId: string) {
-        return setSession(new Session(userId, sessionId, api.EnrollmentStatus.Enrolled, api.EnrollmentStatus.Enrolled, api.EnrollmentStatus.Enrolled));
+        return setCachedSession(new Session(userId, sessionId, api.EnrollmentStatus.Enrolled, api.EnrollmentStatus.Enrolled, api.EnrollmentStatus.Enrolled));
     }
 
     /**
      * Clears current session
      */ 
     export function clearSession() {
-        destroySession();
+        clearCache();
     }
 
     /**
-     * @return Returns true if session was established
+     * @return True if session was established
      */
     export function isSessionActive(): boolean {
-        if (getSessionObject()) {
-            return true;
-        }
-        return false;
+        return getCachedSession() != null;
     }
 
     /**
-     * @return Returns current session identifier or null if there is no active session. 
+     * @return Current session identifier or null if there is no active session. 
      */
     export function getSessionId(): string | null {
-        if (getSessionObject()) {
-            return getSessionObject().sessionId;
+        if (getCachedSession()) {
+            return getCachedSession().getId();
         }
         return null;
     }
 
     /**
-     * @return Returns true if current session completed behavioural enrollment. 
+     * @return True if current session completed behavioural enrollment. 
      */
     export function isBehaviouralEnrolled() {
-        return getSessionObject().isBehaviouralEnrolled();
+        let session = getCachedSession();
+        return session == null ? false : session.isBehaviouralEnrolled();
     }
 
     /**
-     * @return Returns true if current session is currently building behavioural template. 
+     * @return True if current session is currently building behavioural template. 
      */
     export function isBehaviouralBuilding() {
-        return getSessionObject().isBehaviouralBuilding();
+        let session = getCachedSession();
+        return session == null ? false : session.isBehaviouralBuilding();
     }
 
     /**
-     * @return Returns true if current session completed facial enrollment. 
+     * @return True if current session completed facial enrollment. 
      */
     export function isFacialEnrolled() {
-        return getSessionObject().isFacialEnrolled();
+        let session = getCachedSession();
+        return session == null ? false : session.isFacialEnrolled();
     }
 
     /**
-     * @return Returns true if current session is currently building face template. 
+     * @return True if current session is currently building face template. 
      */
     export function isFacialBuilding() {
-        return getSessionObject().isFacialBuilding();
+        let session = getCachedSession();
+        return session == null ? false : session.isFacialBuilding();
     }
 
     /**
-     * @return Returns true if current session completed voice enrollment. 
+     * @return True if current session completed voice enrollment. 
      */
     export function isVoiceEnrolled() {
-        return getSessionObject().isVoiceEnrolled();
+        let session = getCachedSession();
+        return session == null ? false : session.isVoiceEnrolled();
     }
 
     /**
-     * @return Returns true if current session is currently building voice template. 
+     * @return True if current session is currently building voice template. 
      */
     export function isVoiceBuilding() {
-        return getSessionObject().isVoiceBuilding();
+        let session = getCachedSession();
+        return session == null ? false : session.isVoiceBuilding();
     }
 }

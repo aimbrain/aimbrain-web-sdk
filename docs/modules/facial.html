@@ -90,46 +90,47 @@
     }
 });
 </code></pre><h3 id="customizing-recording-popup">Customizing recording popup</h3>
-						<p>Use methods <a href="facial.html#settoplabel">setTopLabel</a> and <a href="facial.html#setbottomlabel">setBottomLabel</a> to set text on popup.
-						<a href="facial.html#setrecordinglabel">setRecordingLabel</a> and <a href="facial.html#settimerlabel">setTimerLabel</a> to control recording countdown label.</p>
+						<p>Use methods [[setTopLabel]] and [[setBottomLabel]] to set text on popup.
+						[[setRecordingLabel]] and [[setTimerLabel]] to control recording countdown label.</p>
 						<p>These methods must be invoked before calling <a href="facial.html#recordfacevideo">recordFaceVideo</a> and set labels
 						persist until page reload.</p>
 						<p>Presented popup has the following structure.</p>
-						<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-facial-popup"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-facial-contents"</span>&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-facial-overlay"</span>&gt;</span>
+						<pre><code>&lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"aimbrain-dialog-wrapper"</span>&gt;
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-dialog-face"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-face-video-wrapper"</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-face-viewfinder"</span>&gt;</span>
             <span class="hljs-comment">&lt;!-- contains face 'mask' --&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-facial-close"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-face-close"</span>&gt;</span>
             <span class="hljs-comment">&lt;!-- contains close button --&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-facial-top-label"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-face-header-label"</span>&gt;</span>
             <span class="hljs-comment">&lt;!-- contains top text --&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-facial-bottom-label"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-face-hint-label"</span>&gt;</span>
             <span class="hljs-comment">&lt;!-- contains bottom text --&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-facial-capturing-label"</span>&gt;</span>
-            <span class="hljs-comment">&lt;!-- contains capture progress text --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-face-controls"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-face-progress-label"</span>&gt;</span>
+                <span class="hljs-comment">&lt;!-- contains capture time progress --&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-face-record-button"</span>&gt;</span>
+                <span class="hljs-comment">&lt;!-- contains recording button --&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-face-stop-button"</span>&gt;</span>
+                <span class="hljs-comment">&lt;!-- contains recording stop button --&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-facial-timer-label"</span>&gt;</span>
-            <span class="hljs-comment">&lt;!-- contains capture time progress --&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-facial-record-button"</span>&gt;</span>
-            <span class="hljs-comment">&lt;!-- contains recording button --&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-facial-stop-button"</span>&gt;</span>
-            <span class="hljs-comment">&lt;!-- contains recording stop button --&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+&lt;<span class="hljs-regexp">/div&gt;</span>
 </code></pre><p>Element classes will be always present and can be used to amend popup styling
 						with custom CSS.</p>
 						<h3 id="enrolling-with-the-facial-module">Enrolling with the facial module</h3>
 						<p>Use <a href="facial.html#enrollwithdata">enrollWithData</a> to enroll with recorded face. Data received from
 							<a href="facial.html#recordfacevideo">recordFaceVideo</a> should be passed as <a href="facial.html#enrollwithdata">enrollWithData</a> argument without
 						modifications.</p>
-						<pre><code>Aimbrain.facial.recordFaceVideo().<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(result)</span> =&gt;</span> {
+						<pre><code>Aimbrain.facial.recordFaceVideo(options).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(result)</span> =&gt;</span> {
     Aimbrain.facial.enrollWithData(result).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(result)</span> =&gt;</span> {
         // face enrolled, reestablish session to get latest enrollment state.
     }).catch(<span class="hljs-function"><span class="hljs-params">(<span class="hljs-built_in">error</span>)</span> =&gt;</span> {
@@ -148,7 +149,7 @@
 						<p>Use <a href="facial.html#authenticatewithdata">authenticateWithData</a> to authenticate with recorded face. Data received from
 							<a href="facial.html#recordfacevideo">recordFaceVideo</a> should be passed as <a href="facial.html#authenticatewithdata">authenticateWithData</a> argument without
 						modifications.</p>
-						<pre><code>Aimbrain.facial.recordFaceVideo().<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(result)</span> =&gt;</span> {
+						<pre><code>Aimbrain.facial.recordFaceVideo(options).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(result)</span> =&gt;</span> {
     Aimbrain.facial.authenticateWithData(result).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(result)</span> =&gt;</span> {
         // use result.score <span class="hljs-keyword">and</span> result.liveliness fields
         // to decide authentication outcome
@@ -176,80 +177,92 @@
 							<h3>Enumerations</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-enum tsd-parent-kind-module"><a href="../enums/facial.recordingerror.html" class="tsd-kind-icon">Recording<wbr>Error</a></li>
+								<li class="tsd-kind-enum tsd-parent-kind-module"><a href="../enums/facial.recordingmode.html" class="tsd-kind-icon">Recording<wbr>Mode</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="facial.html#facedialogoptions" class="tsd-kind-icon">Face<wbr>Dialog<wbr>Options</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="facial.html#authenticate" class="tsd-kind-icon">authenticate</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="facial.html#authenticatewithdata" class="tsd-kind-icon">authenticate<wbr>With<wbr>Data</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="facial.html#enrollwithdata" class="tsd-kind-icon">enroll<wbr>With<wbr>Data</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="facial.html#issupported" class="tsd-kind-icon">is<wbr>Supported</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="facial.html#recordfaceimages" class="tsd-kind-icon">record<wbr>Face<wbr>Images</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="facial.html#recordfacevideo" class="tsd-kind-icon">record<wbr>Face<wbr>Video</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="facial.html#setbottomlabel" class="tsd-kind-icon">set<wbr>Bottom<wbr>Label</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="facial.html#setrecordinglabel" class="tsd-kind-icon">set<wbr>Recording<wbr>Label</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="facial.html#settimerlabel" class="tsd-kind-icon">set<wbr>Timer<wbr>Label</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="facial.html#settoplabel" class="tsd-kind-icon">set<wbr>Top<wbr>Label</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="authenticate" class="tsd-anchor"></a>
-					<h3>authenticate</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">authenticate<span class="tsd-signature-symbol">(</span>serialize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in facial/index.ts:99</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Displays face authentication poup and authenticate if video is recorded.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> serialize: <span class="tsd-signature-type">false</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>flag to return serialised request instead of performing API call</p>
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="facedialogoptions" class="tsd-anchor"></a>
+					<h3>Face<wbr>Dialog<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">Face<wbr>Dialog<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Options for face recording popup</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> capturing<wbr>Text<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Set label which is shown when recording is started</p>
 									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Promise</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Promise</span>
-							</h4>
-							<p>Returns promise, which resolves to:</p>
-							<ul>
-								<li>string with API request body if serialize flag was set to true</li>
-								<li><a href="api.html#authenticationresponse">AuthenticationResponse</a> if serialize flag was set to false and call succeeded.</li>
-								<li><a href="api.html#authenticationerrorresponse">AuthenticationErrorResponse</a> on error.</li>
-							</ul>
-						</li>
-					</ul>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> header<wbr>Text<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Set top label in recording popup</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> hint<wbr>Text<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Set bottom label in recording  popup</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> progress<wbr>Timer<wbr>Text<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Progress text which is shown when face recording is started.
+										Use {s} pattern inside the label to show timer value anywhere in label.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
 				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
 					<a name="authenticatewithdata" class="tsd-anchor"></a>
 					<h3>authenticate<wbr>With<wbr>Data</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">authenticate<wbr>With<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, serialize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span></li>
+						<li class="tsd-signature tsd-kind-icon">authenticate<wbr>With<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string[]</span>, metadata<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#authenticationresult" class="tsd-signature-type">AuthenticationResult</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in facial/index.ts:77</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -259,30 +272,95 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>data: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>data: <span class="tsd-signature-type">string[]</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>recording created using <a href="facial.html#recordfacevideo">recordFaceVideo</a></p>
+										<div class="lead">
+											<p>recording created using <a href="facial.html#recordfacevideo">recordFaceVideo</a></p>
+										</div>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> serialize: <span class="tsd-signature-type">false</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> metadata: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#authenticationresult" class="tsd-signature-type">AuthenticationResult</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to <a href="api.html#authenticationresult">AuthenticationResult</a>.</p>
+						</li>
+					</ul>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">authenticate<wbr>With<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string[]</span>, metadata<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, serialize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#authenticationresult" class="tsd-signature-type">AuthenticationResult</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Face authentication</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>data: <span class="tsd-signature-type">string[]</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>flag to return serialised request instead of performing API call</p>
+										<div class="lead">
+											<p>recording created using <a href="facial.html#recordfacevideo">recordFaceVideo</a></p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>metadata: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>serialize: <span class="tsd-signature-type">false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>flag to request serialised API call body instead of performing API call</p>
+										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Promise</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Promise</span>
-							</h4>
-							<p>Returns promise, which resolves to:</p>
-							<ul>
-								<li>string with API request body if serialize flag was set to true</li>
-								<li><a href="api.html#facialenrollmentresponse">FacialEnrollmentResponse</a> if serialize flag was set to false and call succeeded.</li>
-								<li><a href="api.html#enrollerrorresponse">EnrollErrorResponse</a> on error.</li>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#authenticationresult" class="tsd-signature-type">AuthenticationResult</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to <a href="api.html#authenticationresult">AuthenticationResult</a>.</p>
+						</li>
+					</ul>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">authenticate<wbr>With<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string[]</span>, metadata<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, serialize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Face authentication</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>data: <span class="tsd-signature-type">string[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>recording created using <a href="facial.html#recordfacevideo">recordFaceVideo</a></p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>metadata: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>serialize: <span class="tsd-signature-type">true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>flag to request serialised API call body instead of performing API call</p>
+										</div>
+									</div>
+								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to string with API request body</p>
 						</li>
 					</ul>
 				</section>
@@ -290,14 +368,11 @@
 					<a name="enrollwithdata" class="tsd-anchor"></a>
 					<h3>enroll<wbr>With<wbr>Data</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">enroll<wbr>With<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, serialize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span></li>
+						<li class="tsd-signature tsd-kind-icon">enroll<wbr>With<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string[]</span>, metadata<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#facialenrollmentresult" class="tsd-signature-type">FacialEnrollmentResult</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in facial/index.ts:52</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -307,30 +382,159 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>data: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>data: <span class="tsd-signature-type">string[]</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>recording created using <a href="facial.html#recordfacevideo">recordFaceVideo</a></p>
+										<div class="lead">
+											<p>recording created using <a href="facial.html#recordfacevideo">recordFaceVideo</a></p>
+										</div>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> serialize: <span class="tsd-signature-type">false</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> metadata: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#facialenrollmentresult" class="tsd-signature-type">FacialEnrollmentResult</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to <a href="api.html#facialenrollmentresult">FacialEnrollmentResult</a>.</p>
+						</li>
+					</ul>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">enroll<wbr>With<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string[]</span>, metadata<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, serialize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#facialenrollmentresult" class="tsd-signature-type">FacialEnrollmentResult</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Face enrollment</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>data: <span class="tsd-signature-type">string[]</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>flag to return serialised request instead of performing API call</p>
+										<div class="lead">
+											<p>recording created using <a href="facial.html#recordfacevideo">recordFaceVideo</a></p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>metadata: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>serialize: <span class="tsd-signature-type">false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>flag to request serialised API call body instead of performing API call</p>
+										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Promise</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Promise</span>
-							</h4>
-							<p>Returns promise, which resolves to:</p>
-							<ul>
-								<li>string with API request body if serialize flag was set to true</li>
-								<li><a href="api.html#facialenrollmentresponse">FacialEnrollmentResponse</a> if serialize flag was set to false and call succeeded.</li>
-								<li><a href="api.html#enrollerrorresponse">EnrollErrorResponse</a> on error.</li>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#facialenrollmentresult" class="tsd-signature-type">FacialEnrollmentResult</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to <a href="api.html#facialenrollmentresult">FacialEnrollmentResult</a>.</p>
+						</li>
+					</ul>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">enroll<wbr>With<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string[]</span>, metadata<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, serialize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Face enrollment</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>data: <span class="tsd-signature-type">string[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>recording created using <a href="facial.html#recordfacevideo">recordFaceVideo</a></p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>metadata: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>serialize: <span class="tsd-signature-type">true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>flag to request serialised API call body instead of performing API call</p>
+										</div>
+									</div>
+								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to string with API request body</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="issupported" class="tsd-anchor"></a>
+					<h3>is<wbr>Supported</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Supported<span class="tsd-signature-symbol">(</span>mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RecordingMode.Video</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RecordingMode.Images</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if face module is supported by current browser.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>mode: <span class="tsd-signature-type">RecordingMode.Video</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RecordingMode.Images</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Recording mode to be used</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>if face module can be used with supplied mode.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="recordfaceimages" class="tsd-anchor"></a>
+					<h3>record<wbr>Face<wbr>Images</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">record<wbr>Face<wbr>Images<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="facial.html#facedialogoptions" class="tsd-signature-type">FaceDialogOptions</a>, imageCount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Displays face recording popup and records face images.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>options: <a href="facial.html#facedialogoptions" class="tsd-signature-type">FaceDialogOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>recording dialog display options</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> imageCount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>number of images to be recorded</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to string array with base64 encoded recorded images.</p>
 						</li>
 					</ul>
 				</section>
@@ -338,136 +542,28 @@
 					<a name="recordfacevideo" class="tsd-anchor"></a>
 					<h3>record<wbr>Face<wbr>Video</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">record<wbr>Face<wbr>Video<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span></li>
+						<li class="tsd-signature tsd-kind-icon">record<wbr>Face<wbr>Video<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="facial.html#facedialogoptions" class="tsd-signature-type">FaceDialogOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in facial/index.ts:39</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Displays face recording poup.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span></h4>
-							<p>Return promise which resolves to string array with base64 encoded video recording</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="setbottomlabel" class="tsd-anchor"></a>
-					<h3>set<wbr>Bottom<wbr>Label</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Bottom<wbr>Label<span class="tsd-signature-symbol">(</span>label<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in facial/index.ts:125</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set bottom label in recording  popup.</p>
+									<p>Displays face recording popup and records face video.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>label: <span class="tsd-signature-type">string</span></h5>
+									<h5>options: <a href="facial.html#facedialogoptions" class="tsd-signature-type">FaceDialogOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>recording dialog display options</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="setrecordinglabel" class="tsd-anchor"></a>
-					<h3>set<wbr>Recording<wbr>Label</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Recording<wbr>Label<span class="tsd-signature-symbol">(</span>label<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in facial/index.ts:132</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set label which is shown when recording is started.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>label: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="settimerlabel" class="tsd-anchor"></a>
-					<h3>set<wbr>Timer<wbr>Label</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Timer<wbr>Label<span class="tsd-signature-symbol">(</span>label<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in facial/index.ts:141</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set timer label which is shown when face recording is started.
-										Use {s} pattern inside the label to show timer value anywhere in label.
-									If {s} is not present in label timer value will be appended at the end of label.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>label: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="settoplabel" class="tsd-anchor"></a>
-					<h3>set<wbr>Top<wbr>Label</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Top<wbr>Label<span class="tsd-signature-symbol">(</span>label<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in facial/index.ts:118</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set top label in recording popup.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>label: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to string array with base64 encoded video recording</p>
 						</li>
 					</ul>
 				</section>
@@ -501,8 +597,11 @@
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="../enums/facial.recordingerror.html" class="tsd-kind-icon">Recording<wbr>Error</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="facial.html#authenticate" class="tsd-kind-icon">authenticate</a>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="../enums/facial.recordingmode.html" class="tsd-kind-icon">Recording<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="facial.html#facedialogoptions" class="tsd-kind-icon">Face<wbr>Dialog<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="facial.html#authenticatewithdata" class="tsd-kind-icon">authenticate<wbr>With<wbr>Data</a>
@@ -511,19 +610,13 @@
 						<a href="facial.html#enrollwithdata" class="tsd-kind-icon">enroll<wbr>With<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="facial.html#issupported" class="tsd-kind-icon">is<wbr>Supported</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="facial.html#recordfaceimages" class="tsd-kind-icon">record<wbr>Face<wbr>Images</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="facial.html#recordfacevideo" class="tsd-kind-icon">record<wbr>Face<wbr>Video</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="facial.html#setbottomlabel" class="tsd-kind-icon">set<wbr>Bottom<wbr>Label</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="facial.html#setrecordinglabel" class="tsd-kind-icon">set<wbr>Recording<wbr>Label</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="facial.html#settimerlabel" class="tsd-kind-icon">set<wbr>Timer<wbr>Label</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="facial.html#settoplabel" class="tsd-kind-icon">set<wbr>Top<wbr>Label</a>
 					</li>
 				</ul>
 			</nav>

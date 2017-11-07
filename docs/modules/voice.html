@@ -113,21 +113,18 @@ Aimbrain.voice.getEnrollmentToken(currentStepKey).then(<span class="hljs-functio
     }
 });
 </code></pre><h3 id="customizing-recording-dialog">Customizing recording dialog</h3>
-						<p>Use methods <a href="voice.html#settoplabel">setTopLabel</a> and <a href="voice.html#setbottomlabel">setBottomLabel</a> to set text on popup.
-						[[setRecordningLabel]] and <a href="voice.html#settimerlabel">setTimerLabel</a> to control recording countdown label.</p>
+						<p>Use methods [[setTopLabel]] and [[setBottomLabel]] to set text on popup.
+						[[setRecordningLabel]] and [[setTimerLabel]] to control recording countdown label.</p>
 						<p>These methods must be invoked before calling <a href="voice.html#recordvoice">recordVoice</a> and set labels
 						persist until page reload.</p>
 						<p>Presented popup has the following structure.</p>
-						<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-voice-popup"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-voice-contents"</span>&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+						<pre><code>&lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"aimbrain-dialog-wrapper"</span>&gt;
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-dialog-voice"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-voice-close"</span>&gt;</span>
             <span class="hljs-comment">&lt;!-- contains close button --&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-voice-top-label"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-voice-header-label"</span>&gt;</span>
             <span class="hljs-comment">&lt;!-- contains top text --&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-voice-bottom-label"</span>&gt;</span>
-            <span class="hljs-comment">&lt;!-- contains bottom text --&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-voice-token"</span>&gt;</span>
             <span class="hljs-comment">&lt;!-- contains text to be read --&gt;</span>
@@ -135,24 +132,26 @@ Aimbrain.voice.getEnrollmentToken(currentStepKey).then(<span class="hljs-functio
         <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-voice-capturing-label"</span>&gt;</span>
             <span class="hljs-comment">&lt;!-- contains capture progress text --&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-voice-timer-label"</span>&gt;</span>
-            <span class="hljs-comment">&lt;!-- contains capture time progress --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-voice-controls"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-voice-progress-label"</span>&gt;</span>
+                <span class="hljs-comment">&lt;!-- contains capture time progress --&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-voice-record-button"</span>&gt;</span>
+                <span class="hljs-comment">&lt;!-- contains recording button --&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-voice-stop-button"</span>&gt;</span>
+                <span class="hljs-comment">&lt;!-- contains recording stop button --&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-voice-record-button"</span>&gt;</span>
-            <span class="hljs-comment">&lt;!-- contains recording button --&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aimbrain-voice-stop-button"</span>&gt;</span>
-            <span class="hljs-comment">&lt;!-- contains recording stop button --&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+&lt;<span class="hljs-regexp">/div&gt;</span>
 </code></pre><p>Element classes will be always present and can be used to amend popup styling
 						with custom CSS.</p>
 						<h3 id="enrolling-with-the-voice-module">Enrolling with the voice module</h3>
 						<p>Use <a href="voice.html#enrollwithdata">enrollWithData</a> to enroll with recorded voice. Data received from
 							<a href="voice.html#recordvoice">recordVoice</a> should be passed as <a href="voice.html#enrollwithdata">enrollWithData</a> argument without
 						modifications.</p>
-						<pre><code>Aimbrain.voice.recordVoice().<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(voiceToken)</span> =&gt;</span> {
+						<pre><code>Aimbrain.voice.recordVoice(options).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(voiceToken)</span> =&gt;</span> {
     Aimbrain.voice.enrollWithData(result).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(result)</span> =&gt;</span> {
         // voice step enrolled, reestablish session to get latest enrollment state.
     }).catch(<span class="hljs-function"><span class="hljs-params">(<span class="hljs-built_in">error</span>)</span> =&gt;</span> {
@@ -170,7 +169,7 @@ Aimbrain.voice.getEnrollmentToken(currentStepKey).then(<span class="hljs-functio
 						<p>Use <a href="voice.html#authenticatewithdata">authenticateWithData</a> to authenticate with recorded voice. Data received from
 							<a href="voice.html#recordvoice">recordVoice</a> should be passed as <a href="voice.html#authenticatewithdata">authenticateWithData</a> argument without
 						modifications.</p>
-						<pre><code>Aimbrain.voice.recordVoice().<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(result)</span> =&gt;</span> {
+						<pre><code>Aimbrain.voice.recordVoice(options).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(result)</span> =&gt;</span> {
     Aimbrain.voice.authenticateWithData(result).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(result)</span> =&gt;</span> {
         // use result.score <span class="hljs-keyword">and</span> result.liveliness fields
         // to decide authentication outcome
@@ -203,7 +202,8 @@ Aimbrain.voice.getEnrollmentToken(currentStepKey).then(<span class="hljs-functio
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="voice.html#enrollmenttokenkeys" class="tsd-kind-icon">Enrollment<wbr>Token<wbr>Keys</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="voice.html#enrollmenttokenkey" class="tsd-kind-icon">Enrollment<wbr>Token<wbr>Key</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="voice.html#voicedialogoptions" class="tsd-kind-icon">Voice<wbr>Dialog<wbr>Options</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -214,11 +214,8 @@ Aimbrain.voice.getEnrollmentToken(currentStepKey).then(<span class="hljs-functio
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="voice.html#getauthenticationtoken" class="tsd-kind-icon">get<wbr>Authentication<wbr>Token</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="voice.html#getenrollmenttoken" class="tsd-kind-icon">get<wbr>Enrollment<wbr>Token</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="voice.html#getenrollmenttokenkeys" class="tsd-kind-icon">get<wbr>Enrollment<wbr>Token<wbr>Keys</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="voice.html#issupported" class="tsd-kind-icon">is<wbr>Supported</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="voice.html#recordvoice" class="tsd-kind-icon">record<wbr>Voice</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="voice.html#setbottomlabel" class="tsd-kind-icon">set<wbr>Bottom<wbr>Label</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="voice.html#setrecordinglabel" class="tsd-kind-icon">set<wbr>Recording<wbr>Label</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="voice.html#settimerlabel" class="tsd-kind-icon">set<wbr>Timer<wbr>Label</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="voice.html#settoplabel" class="tsd-kind-icon">set<wbr>Top<wbr>Label</a></li>
 							</ul>
 						</section>
 					</div>
@@ -227,18 +224,65 @@ Aimbrain.voice.getEnrollmentToken(currentStepKey).then(<span class="hljs-functio
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
-					<a name="enrollmenttokenkeys" class="tsd-anchor"></a>
-					<h3>Enrollment<wbr>Token<wbr>Keys</h3>
-					<div class="tsd-signature tsd-kind-icon">Enrollment<wbr>Token<wbr>Keys<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"enroll-1"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"enroll-2"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"enroll-3"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"enroll-4"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"enroll-5"</span></div>
+					<a name="enrollmenttokenkey" class="tsd-anchor"></a>
+					<h3>Enrollment<wbr>Token<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">Enrollment<wbr>Token<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"enroll-1"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"enroll-2"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"enroll-3"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"enroll-4"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"enroll-5"</span></div>
 					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in voice/index.ts:15</li>
-						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Token names to be used with <a href="voice.html#getenrollmenttoken">getEnrollmentToken</a></p>
 						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="voicedialogoptions" class="tsd-anchor"></a>
+					<h3>Voice<wbr>Dialog<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">Voice<wbr>Dialog<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Options for voice recording popup</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> capturing<wbr>Text<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Text shown during capture</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> help<wbr>Text<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Set top label in voice recording popup visible before recording</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> progress<wbr>Start<wbr>Text<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Progress text before recording.</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> progress<wbr>Timer<wbr>Text<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Progress text which is shown when voice recording is started.
+										Use {s} pattern inside the label to show timer value anywhere in label.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</section>
 			</section>
@@ -248,14 +292,11 @@ Aimbrain.voice.getEnrollmentToken(currentStepKey).then(<span class="hljs-functio
 					<a name="authenticatewithdata" class="tsd-anchor"></a>
 					<h3>authenticate<wbr>With<wbr>Data</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">authenticate<wbr>With<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, serialize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">false</span>, metadata<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span></li>
+						<li class="tsd-signature tsd-kind-icon">authenticate<wbr>With<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string[]</span>, metadata<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#authenticationresult" class="tsd-signature-type">AuthenticationResult</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in voice/index.ts:108</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -265,33 +306,107 @@ Aimbrain.voice.getEnrollmentToken(currentStepKey).then(<span class="hljs-functio
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>data: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>data: <span class="tsd-signature-type">string[]</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>recording created using <a href="voice.html#recordvoice">recordVoice</a></p>
+										<div class="lead">
+											<p>recording created using <a href="voice.html#recordvoice">recordVoice</a></p>
+										</div>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> serialize: <span class="tsd-signature-type">false</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> metadata: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>flag to return serialised request instead of performing API call</p>
+										<div class="lead">
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#authenticationresult" class="tsd-signature-type">AuthenticationResult</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to <a href="api.html#authenticationresult">AuthenticationResult</a>.</p>
+						</li>
+					</ul>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">authenticate<wbr>With<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string[]</span>, metadata<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, serialize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#authenticationresult" class="tsd-signature-type">AuthenticationResult</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Voice authentication.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>data: <span class="tsd-signature-type">string[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>recording created using <a href="voice.html#recordvoice">recordVoice</a></p>
+										</div>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> metadata: <span class="tsd-signature-type">any</span></h5>
+									<h5>metadata: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>serialize: <span class="tsd-signature-type">false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>flag to request serialised request instead of performing API call</p>
+										</div>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Promise</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Promise</span>
-							</h4>
-							<p>Returns promise, which resolves to:</p>
-							<ul>
-								<li>string with API request body if serialize flag was set to true</li>
-								<li><a href="api.html#authenticationresponse">AuthenticationResponse</a> if serialize falg was set to false and call succeeded.</li>
-								<li><a href="api.html#authenticationerrorresponse">AuthenticationErrorResponse</a> on error.</li>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#authenticationresult" class="tsd-signature-type">AuthenticationResult</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to <a href="api.html#authenticationresult">AuthenticationResult</a>.</p>
+						</li>
+					</ul>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">authenticate<wbr>With<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string[]</span>, metadata<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, serialize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Voice authentication.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>data: <span class="tsd-signature-type">string[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>recording created using <a href="voice.html#recordvoice">recordVoice</a></p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>metadata: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>serialize: <span class="tsd-signature-type">true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>flag to request serialised request instead of performing API call</p>
+										</div>
+									</div>
+								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to string with API request body.</p>
 						</li>
 					</ul>
 				</section>
@@ -299,47 +414,79 @@ Aimbrain.voice.getEnrollmentToken(currentStepKey).then(<span class="hljs-functio
 					<a name="enrollwithdata" class="tsd-anchor"></a>
 					<h3>enroll<wbr>With<wbr>Data</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">enroll<wbr>With<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, serialize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span></li>
+						<li class="tsd-signature tsd-kind-icon">enroll<wbr>With<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string[]</span>, metadata<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#voiceenrollmentresult" class="tsd-signature-type">VoiceEnrollmentResult</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in voice/index.ts:84</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Voice enrollment.</p>
+									<p>Enroll using recorded voice.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>data: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>data: <span class="tsd-signature-type">string[]</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>recording created using <a href="voice.html#recordvoice">recordVoice</a></p>
+										<div class="lead">
+											<p>recording created using <a href="voice.html#recordvoice">recordVoice</a></p>
+										</div>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> serialize: <span class="tsd-signature-type">false</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> metadata: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>flag to return serialised request instead of performing API call</p>
+										<div class="lead">
+										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Promise</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Promise</span>
-							</h4>
-							<p>Returns promise, which resolves to:</p>
-							<ul>
-								<li>string with API request body if serialize flag was set to true</li>
-								<li><a href="api.html#voiceenrollmentresponse">VoiceEnrollmentResponse</a> if serialize falg was set to false and call succeeded.</li>
-								<li><a href="api.html#enrollerrorresponse">EnrollErrorResponse</a> on error.</li>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#voiceenrollmentresult" class="tsd-signature-type">VoiceEnrollmentResult</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to <a href="api.html#voiceenrollmentresult">VoiceEnrollmentResult</a>.</p>
+						</li>
+					</ul>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">enroll<wbr>With<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string[]</span>, metadata<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, serialize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Enroll using recorded voice.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>data: <span class="tsd-signature-type">string[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>recording created using <a href="voice.html#recordvoice">recordVoice</a></p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>metadata: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>serialize: <span class="tsd-signature-type">true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>flag to request serialised request instead of performing API call</p>
+										</div>
+									</div>
+								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to string with API request body.</p>
 						</li>
 					</ul>
 				</section>
@@ -347,28 +494,28 @@ Aimbrain.voice.getEnrollmentToken(currentStepKey).then(<span class="hljs-functio
 					<a name="getauthenticationtoken" class="tsd-anchor"></a>
 					<h3>get<wbr>Authentication<wbr>Token</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Authentication<wbr>Token<span class="tsd-signature-symbol">(</span>serialize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Authentication<wbr>Token<span class="tsd-signature-symbol">(</span>metadata<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, serialize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in voice/index.ts:42</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> serialize: <span class="tsd-signature-type">false</span></h5>
+									<h5>metadata: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> serialize: <span class="tsd-signature-type">boolean</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>flag to return serialised request instead of performing API call</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span></h4>
-							<p>Return promise which resolves to:</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise which resolves to:</p>
 							<ul>
 								<li>string containing authentication token if serialize parameter was false</li>
 								<li>string with serialized request body if serialize parameter was true</li>
@@ -380,33 +527,33 @@ Aimbrain.voice.getEnrollmentToken(currentStepKey).then(<span class="hljs-functio
 					<a name="getenrollmenttoken" class="tsd-anchor"></a>
 					<h3>get<wbr>Enrollment<wbr>Token</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Enrollment<wbr>Token<span class="tsd-signature-symbol">(</span>tokenKey<span class="tsd-signature-symbol">: </span><a href="voice.html#enrollmenttokenkeys" class="tsd-signature-type">EnrollmentTokenKeys</a>, serialize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Enrollment<wbr>Token<span class="tsd-signature-symbol">(</span>tokenKey<span class="tsd-signature-symbol">: </span><a href="voice.html#enrollmenttokenkey" class="tsd-signature-type">EnrollmentTokenKey</a>, metadata<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, serialize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in voice/index.ts:32</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>tokenKey: <a href="voice.html#enrollmenttokenkeys" class="tsd-signature-type">EnrollmentTokenKeys</a></h5>
+									<h5>tokenKey: <a href="voice.html#enrollmenttokenkey" class="tsd-signature-type">EnrollmentTokenKey</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>token key which identifies token</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> serialize: <span class="tsd-signature-type">false</span></h5>
+									<h5>metadata: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> serialize: <span class="tsd-signature-type">boolean</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>flag to return serialised request instead of performing API call</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>Return promise which resolves to:</p>
 							<ul>
 								<li>string containing enrollment voice token if serialize parameter was false</li>
@@ -419,22 +566,39 @@ Aimbrain.voice.getEnrollmentToken(currentStepKey).then(<span class="hljs-functio
 					<a name="getenrollmenttokenkeys" class="tsd-anchor"></a>
 					<h3>get<wbr>Enrollment<wbr>Token<wbr>Keys</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Enrollment<wbr>Token<wbr>Keys<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Enrollment<wbr>Token<wbr>Keys<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in voice/index.ts:21</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>All enrollment token keys</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string[]</span></h4>
 							<p>Returns all enrollment token keys to be used with <a href="voice.html#getenrollmenttoken">getEnrollmentToken</a></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="issupported" class="tsd-anchor"></a>
+					<h3>is<wbr>Supported</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Supported<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if voice module is supported by current browser.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>if voice module can be used.</p>
 						</li>
 					</ul>
 				</section>
@@ -442,14 +606,11 @@ Aimbrain.voice.getEnrollmentToken(currentStepKey).then(<span class="hljs-functio
 					<a name="recordvoice" class="tsd-anchor"></a>
 					<h3>record<wbr>Voice</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">record<wbr>Voice<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span></li>
+						<li class="tsd-signature tsd-kind-icon">record<wbr>Voice<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="voice.html#voicedialogoptions" class="tsd-signature-type">VoiceDialogOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in voice/index.ts:71</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -464,123 +625,12 @@ Aimbrain.voice.getEnrollmentToken(currentStepKey).then(<span class="hljs-functio
 										<p>voice token shown to user</p>
 									</div>
 								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span></h4>
-							<p>Return promise which resolves to string array with base64 encoded audio recording</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="setbottomlabel" class="tsd-anchor"></a>
-					<h3>set<wbr>Bottom<wbr>Label</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Bottom<wbr>Label<span class="tsd-signature-symbol">(</span>label<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in voice/index.ts:134</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set bottom label in voice recording popup.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
 								<li>
-									<h5>label: <span class="tsd-signature-type">string</span></h5>
+									<h5>options: <a href="voice.html#voicedialogoptions" class="tsd-signature-type">VoiceDialogOptions</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="setrecordinglabel" class="tsd-anchor"></a>
-					<h3>set<wbr>Recording<wbr>Label</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Recording<wbr>Label<span class="tsd-signature-symbol">(</span>label<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in voice/index.ts:141</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set label which is shown when voice recording is started.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>label: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="settimerlabel" class="tsd-anchor"></a>
-					<h3>set<wbr>Timer<wbr>Label</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Timer<wbr>Label<span class="tsd-signature-symbol">(</span>label<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in voice/index.ts:150</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set timer label which is shown when voice recording is started.
-										Use {s} pattern inside the label to show timer value anywhere in label.
-									If {s} is not present in label timer value will be appended at the end of label.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>label: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="settoplabel" class="tsd-anchor"></a>
-					<h3>set<wbr>Top<wbr>Label</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Top<wbr>Label<span class="tsd-signature-symbol">(</span>label<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in voice/index.ts:127</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set top label in voice recording popup.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>label: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to string array with base64 encoded audio recording</p>
 						</li>
 					</ul>
 				</section>
@@ -615,7 +665,10 @@ Aimbrain.voice.getEnrollmentToken(currentStepKey).then(<span class="hljs-functio
 						<a href="../enums/voice.recordingerror.html" class="tsd-kind-icon">Recording<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="voice.html#enrollmenttokenkeys" class="tsd-kind-icon">Enrollment<wbr>Token<wbr>Keys</a>
+						<a href="voice.html#enrollmenttokenkey" class="tsd-kind-icon">Enrollment<wbr>Token<wbr>Key</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="voice.html#voicedialogoptions" class="tsd-kind-icon">Voice<wbr>Dialog<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="voice.html#authenticatewithdata" class="tsd-kind-icon">authenticate<wbr>With<wbr>Data</a>
@@ -633,19 +686,10 @@ Aimbrain.voice.getEnrollmentToken(currentStepKey).then(<span class="hljs-functio
 						<a href="voice.html#getenrollmenttokenkeys" class="tsd-kind-icon">get<wbr>Enrollment<wbr>Token<wbr>Keys</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="voice.html#issupported" class="tsd-kind-icon">is<wbr>Supported</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="voice.html#recordvoice" class="tsd-kind-icon">record<wbr>Voice</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="voice.html#setbottomlabel" class="tsd-kind-icon">set<wbr>Bottom<wbr>Label</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="voice.html#setrecordinglabel" class="tsd-kind-icon">set<wbr>Recording<wbr>Label</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="voice.html#settimerlabel" class="tsd-kind-icon">set<wbr>Timer<wbr>Label</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="voice.html#settoplabel" class="tsd-kind-icon">set<wbr>Top<wbr>Label</a>
 					</li>
 				</ul>
 			</nav>

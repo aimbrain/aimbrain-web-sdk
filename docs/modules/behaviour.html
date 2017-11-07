@@ -81,7 +81,7 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 						<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">data-aimbrain-id</span>=<span class="hljs-string">"custom"</span>/&gt;</span> <span class="hljs-comment">&lt;!-- SDK will use id 'custom' --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">data-aimbrain-id</span>=<span class="hljs-string">"custom"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"an-id"</span>/&gt;</span> <span class="hljs-comment">&lt;!-- SDK will use id 'custom' (aimbrain-id attribute takes precedence) --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"an-id"</span>/&gt;</span> <span class="hljs-comment">&lt;!-- SDK will use id 'an-id' (use id attribute)  --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">calls</span>=<span class="hljs-string">"a-calls"</span>/&gt;</span> <span class="hljs-comment">&lt;!-- SDK will use no id --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"a-class"</span>/&gt;</span> <span class="hljs-comment">&lt;!-- SDK will use no id --&gt;</span>
 </code></pre><h3 id="starting-and-stopping-behavioural-data-collection">Starting and stopping behavioural data collection</h3>
 						<p>Call <a href="behaviour.html#starttracking">startTracking</a> to begin behavioural event collection. <a href="behaviour.html#stoptracking">stopTracking</a>
 						stops tracking.</p>
@@ -116,7 +116,9 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 							elements to be treated as sensitive views. Events captured on sensitive views
 							do not contain absolute click location and the view identifiers are salted
 						using device specific random key.</p>
-						<p>Adding DOM element to sensitive list makes all its children sensitive as well.</p>
+						<p>Same effect can be achieved by setting html attribute <code>data-aimbrain-sensitive</code></p>
+						<pre><code>&lt;div <span class="hljs-attribute">data-aimbrain-sensitive</span>=<span class="hljs-string">"true"</span>&gt; <span class="hljs-built_in">..</span>.
+</code></pre><p>Adding DOM element to sensitive list makes all its children sensitive as well.</p>
 						<p>Use <a href="behaviour.html#removefromsensitivelist">removeFromSensitiveList</a> to remove elements from sensitive list.</p>
 						<p>Sensitive element list does not persist across page reloads. Elements need to
 						be added on each page reload.</p>
@@ -124,7 +126,9 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 						<p>Calling to <a href="behaviour.html#addtountrackablelist">addToUntrackableList</a> disables tracking of DOM element(s).
 							Absolutely no data will be collected about user activity connected with the
 						untrackable view.</p>
-						<p>Adding DOM element to untrackable list makes all its children untrackable as well.</p>
+						<p>Same effect can be achieved by setting html attribute <code>data-aimbrain-ignored</code></p>
+						<pre><code>&lt;div <span class="hljs-attribute">data-aimbrain-ignored</span>=<span class="hljs-string">"true"</span>&gt; <span class="hljs-built_in">..</span>.
+</code></pre><p>Adding DOM element to untrackable list makes all its children untrackable as well.</p>
 						<p>Use <a href="behaviour.html#removefromuntrackablelist">removeFromUntrackableList</a> to remove elements from untracked list.</p>
 						<p>Untracked element list does not persist across page reloads. Elements need to
 						be added on each page reload.</p>
@@ -143,7 +147,7 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported"><a href="behaviour.html#htmlelementmixed" class="tsd-kind-icon">HTMLElement<wbr>Mixed</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported"><a href="behaviour.html#oneormanyhtmlelements" class="tsd-kind-icon">One<wbr>OrManyHTMLElements</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -151,11 +155,14 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="behaviour.html#addtosensitivelist" class="tsd-kind-icon">add<wbr>ToSensitive<wbr>List</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="behaviour.html#addtountrackablelist" class="tsd-kind-icon">add<wbr>ToUntrackable<wbr>List</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="behaviour.html#clearcollectedevents" class="tsd-kind-icon">clear<wbr>Collected<wbr>Events</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="behaviour.html#getscore" class="tsd-kind-icon">get<wbr>Score</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="behaviour.html#issupported" class="tsd-kind-icon">is<wbr>Supported</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="behaviour.html#removefromsensitivelist" class="tsd-kind-icon">remove<wbr>From<wbr>Sensitive<wbr>List</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="behaviour.html#removefromuntrackablelist" class="tsd-kind-icon">remove<wbr>From<wbr>Untrackable<wbr>List</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="behaviour.html#sendcollectedevents" class="tsd-kind-icon">send<wbr>Collected<wbr>Events</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="behaviour.html#setaimbrainid" class="tsd-kind-icon">set<wbr>Aimbrain<wbr>Id</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="behaviour.html#setsensitivesalt" class="tsd-kind-icon">set<wbr>Sensitive<wbr>Salt</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="behaviour.html#start" class="tsd-kind-icon">start</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="behaviour.html#startsending" class="tsd-kind-icon">start<wbr>Sending</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="behaviour.html#starttracking" class="tsd-kind-icon">start<wbr>Tracking</a></li>
@@ -169,13 +176,10 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Type aliases</h2>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
-					<a name="htmlelementmixed" class="tsd-anchor"></a>
-					<h3>HTMLElement<wbr>Mixed</h3>
-					<div class="tsd-signature tsd-kind-icon">HTMLElement<wbr>Mixed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="oneormanyhtmlelements" class="tsd-anchor"></a>
+					<h3>One<wbr>OrManyHTMLElements</h3>
+					<div class="tsd-signature tsd-kind-icon">One<wbr>OrManyHTMLElements<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">HTMLElement[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NodeList</span></div>
 					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in behaviour/index.ts:30</li>
-						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
@@ -190,14 +194,11 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 					<a name="addtosensitivelist" class="tsd-anchor"></a>
 					<h3>add<wbr>ToSensitive<wbr>List</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>ToSensitive<wbr>List<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><a href="behaviour.html#htmlelementmixed" class="tsd-signature-type">HTMLElementMixed</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>ToSensitive<wbr>List<span class="tsd-signature-symbol">(</span>el<span class="tsd-signature-symbol">: </span><a href="behaviour.html#oneormanyhtmlelements" class="tsd-signature-type">OneOrManyHTMLElements</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in behaviour/index.ts:75</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -207,10 +208,7 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>element: <a href="behaviour.html#htmlelementmixed" class="tsd-signature-type">HTMLElementMixed</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>element(s) to be marked sensitive.</p>
-									</div>
+									<h5>el: <a href="behaviour.html#oneormanyhtmlelements" class="tsd-signature-type">OneOrManyHTMLElements</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -221,14 +219,11 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 					<a name="addtountrackablelist" class="tsd-anchor"></a>
 					<h3>add<wbr>ToUntrackable<wbr>List</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>ToUntrackable<wbr>List<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><a href="behaviour.html#htmlelementmixed" class="tsd-signature-type">HTMLElementMixed</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>ToUntrackable<wbr>List<span class="tsd-signature-symbol">(</span>el<span class="tsd-signature-symbol">: </span><a href="behaviour.html#oneormanyhtmlelements" class="tsd-signature-type">OneOrManyHTMLElements</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in behaviour/index.ts:36</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -238,13 +233,29 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>element: <a href="behaviour.html#htmlelementmixed" class="tsd-signature-type">HTMLElementMixed</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>element(s) to be marked untrackable.</p>
-									</div>
+									<h5>el: <a href="behaviour.html#oneormanyhtmlelements" class="tsd-signature-type">OneOrManyHTMLElements</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="clearcollectedevents" class="tsd-anchor"></a>
+					<h3>clear<wbr>Collected<wbr>Events</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">clear<wbr>Collected<wbr>Events<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Clear collected behavioural events.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -257,9 +268,6 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in behaviour/index.ts:209</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -267,9 +275,29 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>Returns most recent behavioural score received when submitting
+							<p>Most recent behavioural score received when submitting
 								behavioural events. This includes calls to <a href="behaviour.html#sendcollectedevents">sendCollectedEvents</a> and
 							calls made by background event sending.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="issupported" class="tsd-anchor"></a>
+					<h3>is<wbr>Supported</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Supported<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if behavioural module is supported by current browser.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>if behavioural module can be used.</p>
 						</li>
 					</ul>
 				</section>
@@ -277,14 +305,11 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 					<a name="removefromsensitivelist" class="tsd-anchor"></a>
 					<h3>remove<wbr>From<wbr>Sensitive<wbr>List</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">remove<wbr>From<wbr>Sensitive<wbr>List<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><a href="behaviour.html#htmlelementmixed" class="tsd-signature-type">HTMLElementMixed</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>From<wbr>Sensitive<wbr>List<span class="tsd-signature-symbol">(</span>el<span class="tsd-signature-symbol">: </span><a href="behaviour.html#oneormanyhtmlelements" class="tsd-signature-type">OneOrManyHTMLElements</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in behaviour/index.ts:93</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -294,10 +319,7 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>element: <a href="behaviour.html#htmlelementmixed" class="tsd-signature-type">HTMLElementMixed</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>element(s) to be removed from sensitive list.</p>
-									</div>
+									<h5>el: <a href="behaviour.html#oneormanyhtmlelements" class="tsd-signature-type">OneOrManyHTMLElements</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -308,14 +330,11 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 					<a name="removefromuntrackablelist" class="tsd-anchor"></a>
 					<h3>remove<wbr>From<wbr>Untrackable<wbr>List</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">remove<wbr>From<wbr>Untrackable<wbr>List<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><a href="behaviour.html#htmlelementmixed" class="tsd-signature-type">HTMLElementMixed</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>From<wbr>Untrackable<wbr>List<span class="tsd-signature-symbol">(</span>el<span class="tsd-signature-symbol">: </span><a href="behaviour.html#oneormanyhtmlelements" class="tsd-signature-type">OneOrManyHTMLElements</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in behaviour/index.ts:54</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -325,10 +344,7 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>element: <a href="behaviour.html#htmlelementmixed" class="tsd-signature-type">HTMLElementMixed</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>element(s) to be removed from untrackable list.</p>
-									</div>
+									<h5>el: <a href="behaviour.html#oneormanyhtmlelements" class="tsd-signature-type">OneOrManyHTMLElements</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -339,41 +355,100 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 					<a name="sendcollectedevents" class="tsd-anchor"></a>
 					<h3>send<wbr>Collected<wbr>Events</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Collected<wbr>Events<span class="tsd-signature-symbol">(</span>serialize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Collected<wbr>Events<span class="tsd-signature-symbol">(</span>metadata<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, serialize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#sendbehaviourresult" class="tsd-signature-type">SendBehaviourResult</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in behaviour/index.ts:138</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Sends collected behavioural events to server. Succesfully sent events will be removed from local storage.</p>
+									<p>Send collected behavioural events.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
+									<h5>metadata: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>integration specific metadata</p>
+										</div>
+									</div>
+								</li>
+								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> serialize: <span class="tsd-signature-type">false</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>flag to return serialised request instead of performing API call</p>
+										<div class="lead">
+											<p>flag to request serialized request body instead of making API call</p>
+										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Promise</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Promise</span>
-							</h4>
-							<p>Return promise which resolves to:</p>
-							<ul>
-								<li>string with API request body if serialize flag was set to true</li>
-								<li><a href="api.html#behaviourresponse">BehaviourResponse</a> if serialize flag was set to false.</li>
-								<li><a href="api.html#behaviourerrorresponse">BehaviourErrorResponse</a> on error.</li>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#sendbehaviourresult" class="tsd-signature-type">SendBehaviourResult</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to <a href="api.html#sendbehaviourresult">SendBehaviourResult</a></p>
+						</li>
+					</ul>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Collected<wbr>Events<span class="tsd-signature-symbol">(</span>metadata<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, serialize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get serialised send event api call.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>metadata: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>integration specific metadata</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> serialize: <span class="tsd-signature-type">true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>flag to request serialized request body instead of making API call</p>
+										</div>
+									</div>
+								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to API request body serialized to string</p>
+						</li>
+					</ul>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Collected<wbr>Events<span class="tsd-signature-symbol">(</span>metadata<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#sendbehaviourresult" class="tsd-signature-type">SendBehaviourResult</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Send collected behavioural events.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>metadata: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>integration specific metadata</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#sendbehaviourresult" class="tsd-signature-type">SendBehaviourResult</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise resolving to <a href="api.html#sendbehaviourresult">SendBehaviourResult</a></p>
 						</li>
 					</ul>
 				</section>
@@ -386,9 +461,6 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in behaviour/index.ts:199</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -415,6 +487,34 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="setsensitivesalt" class="tsd-anchor"></a>
+					<h3>set<wbr>Sensitive<wbr>Salt</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Sensitive<wbr>Salt<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set salt used for sensitive view id hashing.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>hexadecimal 128bit string value.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
 					<a name="start" class="tsd-anchor"></a>
 					<h3>start</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
@@ -423,9 +523,6 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in behaviour/index.ts:189</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -454,9 +551,6 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in behaviour/index.ts:157</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -485,9 +579,6 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in behaviour/index.ts:113</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -507,9 +598,6 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in behaviour/index.ts:178</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -529,9 +617,6 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in behaviour/index.ts:123</li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -570,7 +655,7 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
-						<a href="behaviour.html#htmlelementmixed" class="tsd-kind-icon">HTMLElement<wbr>Mixed</a>
+						<a href="behaviour.html#oneormanyhtmlelements" class="tsd-kind-icon">One<wbr>OrManyHTMLElements</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="behaviour.html#addtosensitivelist" class="tsd-kind-icon">add<wbr>ToSensitive<wbr>List</a>
@@ -579,7 +664,13 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 						<a href="behaviour.html#addtountrackablelist" class="tsd-kind-icon">add<wbr>ToUntrackable<wbr>List</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="behaviour.html#clearcollectedevents" class="tsd-kind-icon">clear<wbr>Collected<wbr>Events</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="behaviour.html#getscore" class="tsd-kind-icon">get<wbr>Score</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="behaviour.html#issupported" class="tsd-kind-icon">is<wbr>Supported</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="behaviour.html#removefromsensitivelist" class="tsd-kind-icon">remove<wbr>From<wbr>Sensitive<wbr>List</a>
@@ -592,6 +683,9 @@ Aimbrain.behaviour.setAimbrainId(<span class="hljs-string">'your-id'</span>, ele
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="behaviour.html#setaimbrainid" class="tsd-kind-icon">set<wbr>Aimbrain<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="behaviour.html#setsensitivesalt" class="tsd-kind-icon">set<wbr>Sensitive<wbr>Salt</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="behaviour.html#start" class="tsd-kind-icon">start</a>

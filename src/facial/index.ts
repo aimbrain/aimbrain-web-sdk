@@ -1,144 +1,157 @@
-import { showPopup } from "./popup";
-import { getSession } from "./../session/session";
-import {
-  enrollFace as enrollFaceApi,
-  authenticateFace as authenticateFaceApi,
-} from "./../api/api";
-import { setLabel } from "./popup";
+import { getCachedSession } from "./../session/state";
 import { api } from "./../api";
+import * as calls from "./calls";
+import * as video from "./video";
+import * as recording from "./recording";
 
 /**
  * [[include:facial-module.md]]
  */
 export namespace facial {
 
-  /**
-   * Error codes used when recording fails
-   */
-  export enum RecordingError {
     /**
-     * User closed popup.
+     * Face capture mode
      */
-    PopupClosed = 0,
+    export enum RecordingMode {
+        /**
+         * Recording captures video.
+         */
+        Video = 0,
+
+        /**
+         * Recording captures image list.
+         */
+        Images = 1
+    }
 
     /**
-     * Recording is not supported by browser
+     * Check if face module is supported by current browser.
+     * @param mode Recording mode to be used
+     * @return if face module can be used with supplied mode.
      */
-    NotSupported = -1,
-
-    /**
-     * No recording device is present
-     */
-    NoDevice = -2
-  }
-
-  /**
-   * Displays face recording poup.
-   * @return Return promise which resolves to string array with base64 encoded video recording 
-   */
-  export function recordFaceVideo(): Promise<string[]> {
-    return showPopup();
-  }
-
-  /**
-   * Face enrollment
-   * @param data recording created using [[recordFaceVideo]]
-   * @param serialize flag to return serialised request instead of performing API call
-   * @return Returns promise, which resolves to:
-   * * string with API request body if serialize flag was set to true
-   * * [[FacialEnrollmentResponse]] if serialize flag was set to false and call succeeded.
-   * * [[EnrollErrorResponse]] on error.
-   */
-  export function enrollWithData(data: string[], serialize?: false): Promise<string> | Promise<api.FacialEnrollmentResponse> | Promise<api.EnrollErrorResponse> {
-    return new Promise((resolve, reject) => {
-      const session = getSession();
-      if (!session) {
-        reject(new Error("Session must be set before calling this function."));
-      }
-      if (serialize) {
-        resolve(enrollFaceApi(session.sessionId, data).serialize());
-      } else {
-        enrollFaceApi(session.sessionId, data).send().then((result) => {
-          resolve(result);
-        });
-      }
-    });
-  }
-
-  /**
-   * Face authentication
-   * @param data recording created using [[recordFaceVideo]]
-   * @param serialize flag to return serialised request instead of performing API call
-   * @return Returns promise, which resolves to:
-   * * string with API request body if serialize flag was set to true
-   * * [[FacialEnrollmentResponse]] if serialize flag was set to false and call succeeded.
-   * * [[EnrollErrorResponse]] on error.
-   */
-  export function authenticateWithData(data: string[], serialize?: false): Promise<string> | Promise<api.FacialEnrollmentResponse> | Promise<api.EnrollErrorResponse> {
-    return new Promise((resolve, reject) => {
-      const session = getSession();
-      if (!session) {
-        reject(new Error("Session must be set before calling this function."));
-      }
-      if (serialize) {
-        resolve(authenticateFaceApi(session.sessionId, data).serialize());
-      } else {
-        resolve(authenticateFaceApi(session.sessionId, data).send());
-      }
-    });
-  }
-
-  /**
-   * Displays face authentication poup and authenticate if video is recorded.
-   * @param serialize flag to return serialised request instead of performing API call
-   * @return Returns promise, which resolves to:
-   * * string with API request body if serialize flag was set to true
-   * * [[AuthenticationResponse]] if serialize flag was set to false and call succeeded.
-   * * [[AuthenticationErrorResponse]] on error.
-   */
-  export function authenticate(serialize?: false): Promise<string> | Promise<api.AuthenticationResponse> | Promise<api.AuthenticationErrorResponse> {
-    return showPopup().then((result) => {
-      return new Promise((resolve, reject) => {
-        const session = getSession();
-        if (!session) {
-          reject(new Error("Session must be set before calling this function."));
+    export function isSupported(mode: RecordingMode): boolean {
+        switch (mode) {
+            case RecordingMode.Video:
+                return video.isVideoSupported();
+            case RecordingMode.Images:
+                return video.isImagingSupported();
+            default:
+                return false;
         }
-        if (serialize) {
-          resolve(authenticateFaceApi(session.sessionId, result).serialize());
-        } else {
-          resolve(authenticateFaceApi(session.sessionId, result).send());
-        }
-      });
-    });
-  }
+    }
 
-  /**
-   * Set top label in recording popup.
-   */
-  export function setTopLabel(label: string) {
-    setLabel("aimbrain-facial-top-label", label);
-  }
+    /**
+     * @return Promise resolving to [[FacialEnrollmentResult]].
+     */
+    export function enrollWithData(data: string[], metadata?: string): Promise<api.FacialEnrollmentResult>;
+    /**
+     * @return Promise resolving to [[FacialEnrollmentResult]].
+     */
+    export function enrollWithData(data: string[], metadata: string, serialize: false): Promise<api.FacialEnrollmentResult>
+    /**
+     * @return Promise resolving to string with API request body
+     */
+    export function enrollWithData(data: string[], metadata: string, serialize: true): Promise<string>
+    /**
+     * Face enrollment
+     * @param data recording created using [[recordFaceVideo]]
+     * @param metadata     
+     * @param serialize flag to request serialised API call body instead of performing API call
+     */
+    export function enrollWithData(data: string[], metadata?: string, serialize?): Promise<api.FacialEnrollmentResult> | Promise<string> {
+        return calls.enrollWithData(data, metadata, serialize);
+    }
 
-  /**
-   * Set bottom label in recording  popup.
-   */
-  export function setBottomLabel(label: string) {
-    setLabel("aimbrain-facial-bottom-label", label);
-  }
+    /**
+     * @return Promise resolving to [[AuthenticationResult]].
+     */
+    export function authenticateWithData(data: string[], metadata?: string): Promise<api.AuthenticationResult>;
+    /**
+     * @return Promise resolving to [[AuthenticationResult]].
+     */
+    export function authenticateWithData(data: string[], metadata: string, serialize: false): Promise<api.AuthenticationResult>
+    /**
+     * @return Promise resolving to string with API request body
+     */
+    export function authenticateWithData(data: string[], metadata: string, serialize: true): Promise<string>
+    /**
+     * Face authentication
+     * @param data recording created using [[recordFaceVideo]]
+     * @param metadata
+     * @param serialize flag to request serialised API call body instead of performing API call
+     */
+    export function authenticateWithData(data: string[], metadata?: string, serialize?): Promise<api.AuthenticationResult> | Promise<string>  {
+        return calls.authenticateWithData(data, metadata, serialize);
+    }
+    
+    /**
+     * Options for face recording popup
+     */
+    export type FaceDialogOptions = {
+        /**
+         * Set top label in recording popup
+         */
+        headerText?: string;
+        
+        /**
+         * Set bottom label in recording  popup
+         */
+        hintText?: string;
 
-  /**
-   * Set label which is shown when recording is started.
-   */
-  export function setRecordingLabel(label: string) {
-    setLabel("aimbrain-facial-capturing-label", label);
-  }
+        /**
+         * Set label which is shown when recording is started
+         */
+        capturingText?: string;
+        
+         /**
+          * Progress text which is shown when face recording is started.
+          * Use {s} pattern inside the label to show timer value anywhere in label.
+          */
+        progressTimerText?: string; 
+    };
+    
 
-  /**
-   * Set timer label which is shown when face recording is started.
-   * Use {s} pattern inside the label to show timer value anywhere in label.
-   * If {s} is not present in label timer value will be appended at the end of label.
-   */
-  export function setTimerLabel(label: string) {
-    setLabel("aimbrain-facial-timer-label", label);
-  }
+    /**
+     * Error codes used when recording fails
+     */
+    export enum RecordingError {
+        /**
+         * User closed popup.
+         */
+        PopupClosed = 0,
+
+        /**
+         * Recording is not supported by browser
+         */
+        NotSupported = -1,
+
+        /**
+         * No recording device is present
+         */
+        NoDevice = -2,
+
+        /**
+         * Error while trying to record
+         */        
+        UnexpectedError = -3,
+    }
+
+    /**
+     * Displays face recording popup and records face video.
+     * @param options recording dialog display options
+     * @return Promise resolving to string array with base64 encoded video recording 
+     */
+    export function recordFaceVideo(options: FaceDialogOptions): Promise<string[]> {
+        return recording.recordFace(options, false);
+    }
+
+    /**
+     * Displays face recording popup and records face images.
+     * @param options recording dialog display options
+     * @param imageCount number of images to be recorded
+     * @return Promise resolving to string array with base64 encoded recorded images.
+     */
+    export function recordFaceImages(options: FaceDialogOptions, imageCount: number = 1): Promise<string[]> {
+        return recording.recordFace(options, true, imageCount);
+    }
 }
